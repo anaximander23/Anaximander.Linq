@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>96e903e6-22a0-4c12-8807-c7088eefd985</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Anaximander.Linq.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.Inspection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.Subdivision.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Slice\ISlicedEnumerable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Slice\SlicedEnumerable.cs" />
+  </ItemGroup>
+</Project>
