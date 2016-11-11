@@ -10,7 +10,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.Generation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.Inspection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.Sorting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.Subdivision.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Slice\ISlicedEnumerable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Slice\SlicedEnumerable.cs" />
