@@ -9,11 +9,15 @@
     <Import_RootNamespace>Anaximander.Linq.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Box\BoxedEnumerable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Box\IBoxedEnumerable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Box\IEnumerableExtensions.Box.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.Generation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.Inspection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.Sorting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.Subdivision.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Slice\IEnumerableExtensions.Slice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Slice\ISlicedEnumerable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Slice\SlicedEnumerable.cs" />
   </ItemGroup>

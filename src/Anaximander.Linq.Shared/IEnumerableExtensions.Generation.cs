@@ -3,7 +3,6 @@ using System.Linq;
 
 namespace Anaximander.Linq
 {
-    // ReSharper disable once InconsistentNaming
     public static partial class IEnumerableExtensions
     {
         /// <summary>

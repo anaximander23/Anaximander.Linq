@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Anaximander.Linq.Shared.Box
+{
+    public static partial class IEnumerableExtensions
+    {
+        /// <summary>
+        /// Groups items in a collection by adding to a box while each object meets some condition compared to the one before, and starting a new box when it does not.
+        /// </summary>
+        /// <param name="source">A collection of objects, in the desired order.</param>
+        /// <param name="sameBoxWhile">A comparison between an object and the one following it. When this returns false, the second of the two objects will be the first in a new box.</param>
+        /// <returns>A collection of collections, where each inner collection is a box in which each consecutive pair meets the specified condition.</returns>
+        public static IBoxedEnumerable<T> BoxWhile<T>(this IEnumerable<T> source, Func<T, T, bool> sameBoxWhile)
+        {
+            return new BoxedEnumerable<T>(source, sameBoxWhile);
+        }
+    }
+}
