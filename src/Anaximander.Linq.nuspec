@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Anaximander.Linq</id>
+        <version>$version$</version>
+        <authors>anaximander</authors>
+        <licenseUrl>http://apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>Useful LINQ extension methods and utility classes.</description>
+    </metadata>
+    <files>
+        <file src="Anaximander.Linq.DotNetCore\bin\Debug\netstandard1.6\Anaximander.Linq.DotNetCore.dll" target="lib\dnxcore50\Anaximander.Linq.DotNetCore.dll" />
+        <file src="Anaximander.Linq\bin\Debug\Anaximander.Linq.dll" target="lib\net40\Anaximander.Linq.dll" />
+    </files>
+</package>

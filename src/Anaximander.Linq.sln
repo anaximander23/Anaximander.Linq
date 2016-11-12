@@ -7,6 +7,13 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Anaximander.Linq.Shared", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq", "Anaximander.Linq\Anaximander.Linq.csproj", "{4B24613B-663D-461C-8B70-AAA901B59F65}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Anaximander.Linq.DotNetCore", "Anaximander.Linq.DotNetCore\Anaximander.Linq.DotNetCore.xproj", "{F030B5CB-C14E-4611-BECE-BC7E17DCE4EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DCC954CE-13A4-4208-B7B2-006B2931482D}"
+	ProjectSection(SolutionItems) = preProject
+		Anaximander.Linq.nuspec = Anaximander.Linq.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Anaximander.Linq.Shared\Anaximander.Linq.Shared.projitems*{4b24613b-663d-461c-8b70-aaa901b59f65}*SharedItemsImports = 4
@@ -21,6 +28,10 @@ Global
 		{4B24613B-663D-461C-8B70-AAA901B59F65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B24613B-663D-461C-8B70-AAA901B59F65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B24613B-663D-461C-8B70-AAA901B59F65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F030B5CB-C14E-4611-BECE-BC7E17DCE4EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F030B5CB-C14E-4611-BECE-BC7E17DCE4EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F030B5CB-C14E-4611-BECE-BC7E17DCE4EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F030B5CB-C14E-4611-BECE-BC7E17DCE4EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
