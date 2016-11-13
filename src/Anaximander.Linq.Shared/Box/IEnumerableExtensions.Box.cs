@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Anaximander.Linq.Shared.Box
+namespace Anaximander.Linq
 {
     public static partial class IEnumerableExtensions
     {
