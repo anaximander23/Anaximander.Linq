@@ -2,6 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Anaximander.Linq</id>
+        <version></version>
         <authors>anaximander</authors>
         <licenseUrl>http://apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
