@@ -77,6 +77,12 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Anaximander.Linq\Anaximander.Linq.csproj">
+      <Project>{4B24613B-663D-461C-8B70-AAA901B59F65}</Project>
+      <Name>Anaximander.Linq</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

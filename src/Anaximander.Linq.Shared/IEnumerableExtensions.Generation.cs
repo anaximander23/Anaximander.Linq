@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Anaximander.Linq
@@ -13,8 +14,19 @@ namespace Anaximander.Linq
         /// <returns>A collection of collections, where each inner collection is one possible permutation.</returns>
         public static IEnumerable<IEnumerable<T>> CartesianProduct<T>(this IEnumerable<IEnumerable<T>> sequences)
         {
+            if (sequences == null)
+            {
+                throw new ArgumentNullException(nameof(sequences));
+            }
+
+            IEnumerable<IEnumerable<T>> sequenceList = sequences as IList<IEnumerable<T>> ?? sequences.ToList();
+            if (!sequenceList.Any())
+            {
+                throw new ArgumentException("Must have at least one collection to generate a Cartesian product", nameof(sequences));
+            }
+
             IEnumerable<IEnumerable<T>> emptyProduct = new[] { Enumerable.Empty<T>() };
-            return sequences.Aggregate(
+            return sequenceList.Aggregate(
               emptyProduct,
               (accumulator, sequence) =>
                 from accseq in accumulator
