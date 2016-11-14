@@ -18,7 +18,7 @@ namespace Anaximander.Linq
 
         public IEnumerator<IEnumerable<T>> GetEnumerator() => GetBoxes().GetEnumerator();
 
-        IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         private IEnumerable<IEnumerable<T>> GetBoxes()
         {

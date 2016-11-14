@@ -8,10 +8,9 @@ namespace Anaximander.Linq
     {
         public SlicedEnumerable(IEnumerable<T> source, int sliceSize)
         {
-            _source = source;
             _sliceSize = sliceSize;
 
-            _windowEnumerator = _source.Window(_sliceSize).GetEnumerator();
+            _windowEnumerator = source.Window(_sliceSize).GetEnumerator();
 
             _processedSlices = new List<IEnumerable<T>>();
         }
@@ -19,7 +18,6 @@ namespace Anaximander.Linq
         public IEnumerable<IEnumerable<T>> Slices => GetSlices();
         public IEnumerable<T> Remainder => GetRemainder();
 
-        private readonly IEnumerable<T> _source;
         private readonly int _sliceSize;
 
         private readonly IEnumerator<IEnumerable<T>> _windowEnumerator;
@@ -51,7 +49,7 @@ namespace Anaximander.Linq
                         moved = 0;
                         sliceIndex = sliceIndex + 1;
 
-                        var current = _windowEnumerator.Current.ToList();
+                        List<T> current = _windowEnumerator.Current.ToList();
                         _processedSlices.Add(current);
                         yield return current;
                     }
@@ -74,7 +72,7 @@ namespace Anaximander.Linq
                 _remainder = new List<T>();
             }
 
-            foreach (var item in _remainder)
+            foreach (T item in _remainder)
             {
                 yield return item;
             }
@@ -82,7 +80,7 @@ namespace Anaximander.Linq
 
         private IEnumerable<IEnumerable<T>> All()
         {
-            foreach (var slice in Slices)
+            foreach (IEnumerable<T> slice in Slices)
             {
                 yield return slice;
             }
@@ -94,6 +92,6 @@ namespace Anaximander.Linq
 
         public IEnumerator<IEnumerable<T>> GetEnumerator() => All().GetEnumerator();
 
-        IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

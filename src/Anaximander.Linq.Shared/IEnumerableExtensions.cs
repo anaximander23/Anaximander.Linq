@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Anaximander.Linq
 {
     public static partial class IEnumerableExtensions
     {
-        public static IOrderedEnumerable<T> OrderToMatch<T, TKey>(this IEnumerable<T> source, Func<T, TKey> selector, IEnumerable<T> ordering)
+        public static IOrderedEnumerable<T> OrderToMatch<T, TKey>(this IEnumerable<T> source, Func<T, TKey> selector, IEnumerable<TKey> ordering)
         {
-            var orderArray = ordering.ToArray();
+            TKey[] orderArray = ordering.ToArray();
             return source.OrderBy<T, int>(x => Array.IndexOf(orderArray, selector(x)));
         }
 
         public static IEnumerable<T> ForEach<T>(this IEnumerable<T> source, Action<T> func)
         {
-            foreach (T item in source)
+            IEnumerable<T> sourceList = source as IList<T> ?? source.ToList();
+            foreach (T item in sourceList)
             {
                 func(item);
             }
-            return source;
+            return sourceList;
         }
 
         public static IEnumerable<T> ForEachLazy<T>(this IEnumerable<T> source, Action<T> func)
