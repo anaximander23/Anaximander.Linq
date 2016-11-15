@@ -24,7 +24,7 @@ namespace Anaximander.Linq.Tests
                 .Select(x => x.ToArray())
                 .ToArray();
 
-            Assert.Equal(new[] { collection }, result);
+            Assert.Equal(new[] { new object[] { } }, result);
         }
 
         [Fact]

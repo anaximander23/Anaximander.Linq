@@ -66,6 +66,11 @@ namespace Anaximander.Linq
         /// <returns></returns>
         public static IEnumerable<IEnumerable<T>> Combinations<T>(this IEnumerable<T> source, int combinationSize)
         {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source), "Source collection is null");
+            }
+
             if (combinationSize < 1)
             {
                 return new[] { new T[] { } };
