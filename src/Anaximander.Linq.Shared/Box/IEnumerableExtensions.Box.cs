@@ -13,6 +13,10 @@ namespace Anaximander.Linq
         /// <returns>A collection of collections, where each inner collection is a box in which each consecutive pair meets the specified condition.</returns>
         public static IBoxedEnumerable<T> BoxWhile<T>(this IEnumerable<T> source, Func<T, T, bool> sameBoxWhile)
         {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source), "Source collection is null");
+            }
             return new BoxedEnumerable<T>(source, sameBoxWhile);
         }
     }

@@ -31,6 +31,12 @@ namespace Anaximander.Linq
                 {
                     endReached = !windowEnumerator.MoveNext();
 
+                    if (windowEnumerator.Current == null)
+                    {
+                        yield return _source;
+                        yield break;
+                    }
+
                     T current = windowEnumerator.Current.First();
                     if (buffer == null)
                     {

@@ -15,13 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq.Tests", "A
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Anaximander.Linq.Tests.Shared", "Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.shproj", "{1CE07C75-F478-4B67-ADD4-BF352A2E4796}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq.Tests.Package", "Anaximander.Linq.Tests.Package\Anaximander.Linq.Tests.Package.csproj", "{3724FD8A-AA65-4E27-A8D5-6AAC6CED77A1}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{0a7abde9-bc1d-486a-97cf-9c1418581916}*SharedItemsImports = 4
 		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{1ce07c75-f478-4b67-add4-bf352a2e4796}*SharedItemsImports = 13
-		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{3724fd8a-aa65-4e27-a8d5-6aac6ced77a1}*SharedItemsImports = 4
 		Anaximander.Linq.Shared\Anaximander.Linq.Shared.projitems*{4b24613b-663d-461c-8b70-aaa901b59f65}*SharedItemsImports = 4
 		Anaximander.Linq.Shared\Anaximander.Linq.Shared.projitems*{96e903e6-22a0-4c12-8807-c7088eefd985}*SharedItemsImports = 13
 	EndGlobalSection
@@ -38,10 +35,6 @@ Global
 		{0A7ABDE9-BC1D-486A-97CF-9C1418581916}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A7ABDE9-BC1D-486A-97CF-9C1418581916}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A7ABDE9-BC1D-486A-97CF-9C1418581916}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3724FD8A-AA65-4E27-A8D5-6AAC6CED77A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3724FD8A-AA65-4E27-A8D5-6AAC6CED77A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3724FD8A-AA65-4E27-A8D5-6AAC6CED77A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3724FD8A-AA65-4E27-A8D5-6AAC6CED77A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +44,5 @@ Global
 		{4B24613B-663D-461C-8B70-AAA901B59F65} = {58A99285-4C92-4FA1-AE6A-9E5B8F87E743}
 		{0A7ABDE9-BC1D-486A-97CF-9C1418581916} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
 		{1CE07C75-F478-4B67-ADD4-BF352A2E4796} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
-		{3724FD8A-AA65-4E27-A8D5-6AAC6CED77A1} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
 	EndGlobalSection
 EndGlobal
