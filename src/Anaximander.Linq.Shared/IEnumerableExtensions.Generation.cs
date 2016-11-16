@@ -64,7 +64,7 @@ namespace Anaximander.Linq
         /// <param name="source">A set of items</param>
         /// <param name="combinationSize">The number of items per result set</param>
         /// <returns></returns>
-        public static IEnumerable<IEnumerable<T>> Combinations<T>(this IEnumerable<T> source, int combinationSize)
+        public static IEnumerable<IEnumerable<T>> Combinations<T>(this IEnumerable<T> source, int combinationSize, CombinationsGenerationMode mode)
         {
             if (source == null)
             {
@@ -85,10 +85,17 @@ namespace Anaximander.Linq
             return sourceList
                 .SelectMany(x => sourceList
                     .OrderBy(y => !x.Equals(y))
-                    .Skip(1)
-                    .Combinations(combinationSize - 1)
+                    .Skip(mode == CombinationsGenerationMode.Distinct ? 1 : 0)
+                    .OrderBy(y => y)
+                    .Combinations(combinationSize - 1, mode)
                     .Select(y => new[] { x }.Concat(y))
                 );
         }
+    }
+
+    public enum CombinationsGenerationMode
+    {
+        Distinct,
+        AllowDuplicates
     }
 }
