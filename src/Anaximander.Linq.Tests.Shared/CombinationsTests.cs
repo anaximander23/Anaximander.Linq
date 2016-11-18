@@ -16,13 +16,11 @@ namespace Anaximander.Linq.Tests
         }
 
         [Fact]
-        public void GivenEmptyCollection_ReturnsEmptyCollection()
+        public void GivenEmptyCollection_ThrowsInvalidOperationException()
         {
             IEnumerable<object> collection = new List<object>();
 
-            var result = collection.Combinations(1, CombinationsGenerationMode.AllowDuplicates);
-
-            Assert.Empty(result);
+            Assert.Throws<InvalidOperationException>(() => collection.Combinations(1, CombinationsGenerationMode.AllowDuplicates));
         }
 
         [Fact]

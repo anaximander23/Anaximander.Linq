@@ -22,7 +22,7 @@ namespace Anaximander.Linq
             IEnumerable<IEnumerable<T>> sequenceList = sequences as IList<IEnumerable<T>> ?? sequences.ToList();
             if (!sequenceList.Any())
             {
-                throw new ArgumentException("Must have at least one collection to generate a Cartesian product", nameof(sequences));
+                throw new InvalidOperationException("Must have at least one collection to generate a Cartesian product");
             }
 
             IEnumerable<IEnumerable<T>> emptyProduct = new[] { Enumerable.Empty<T>() };
@@ -79,24 +79,32 @@ namespace Anaximander.Linq
             IEnumerable<T> sourceList = source as IList<T> ?? source.ToList();
             var sourceSize = sourceList.Count();
 
-            if (sourceSize == 1)
+            switch (sourceSize)
             {
-                return new[] { sourceList };
-            }
+                case 0:
+                    throw new InvalidOperationException("Sequence contains no elements");
 
-            if ((combinationSize > sourceSize) && (mode == CombinationsGenerationMode.Distinct))
-            {
-                throw new InvalidOperationException("Cannot create combinations of sizes larger than the source collection when using distinct items. Check your combination size, or use AllowDuplicates mode.");
-            }
+                case 1:
+                    return new[] { sourceList };
 
-            return sourceList
-                .SelectMany(x => sourceList
-                    .OrderBy(y => !x.Equals(y))
-                    .Skip(mode == CombinationsGenerationMode.Distinct ? 1 : 0)
-                    .OrderBy(y => y)
-                    .Combinations(combinationSize - 1, mode)
-                    .Select(y => new[] { x }.Concat(y))
-                );
+                default:
+                    if ((combinationSize > sourceSize) && (mode == CombinationsGenerationMode.Distinct))
+                    {
+                        throw new InvalidOperationException(String.Concat(
+                            "Cannot create combinations of sizes larger than the source collection when using distinct items. ",
+                            "Check your combination size, or use AllowDuplicates mode.")
+                            );
+                    }
+
+                    return sourceList
+                        .SelectMany(x => sourceList
+                            .OrderBy(y => !x.Equals(y))
+                            .Skip(mode == CombinationsGenerationMode.Distinct ? 1 : 0)
+                            .OrderBy(y => y)
+                            .Combinations(combinationSize - 1, mode)
+                            .Select(y => new[] { x }.Concat(y))
+                        );
+            }
         }
     }
 
