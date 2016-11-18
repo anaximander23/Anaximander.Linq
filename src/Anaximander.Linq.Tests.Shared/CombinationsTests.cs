@@ -100,5 +100,36 @@ namespace Anaximander.Linq.Tests
 
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void GivenCombinationSizeLargerThanSource_InDistinctMode_ThrowsError()
+        {
+            IEnumerable<int> collection = new[] { 1, 2 };
+
+            Assert.Throws<InvalidOperationException>(() => collection.Combinations(3, CombinationsGenerationMode.Distinct));
+        }
+
+        [Fact]
+        public void GivenCombinationSizeLargerThanSource_InDuplicatesMode_ReturnsValidResult()
+        {
+            IEnumerable<int> collection = new[] { 1, 2 };
+            var expected = new[]
+            {
+                new[] { 1, 1, 1 },
+                new[] { 1, 1, 2 },
+                new[] { 1, 2, 1 },
+                new[] { 1, 2, 2 },
+                new[] { 2, 1, 1 },
+                new[] { 2, 1, 2 },
+                new[] { 2, 2, 1 },
+                new[] { 2, 2, 2 }
+            };
+
+            var result = collection.Combinations(3, CombinationsGenerationMode.AllowDuplicates)
+                .Select(x => x.ToArray())
+                .ToArray();
+
+            Assert.Equal(expected, result);
+        }
     }
 }

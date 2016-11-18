@@ -77,9 +77,16 @@ namespace Anaximander.Linq
             }
 
             IEnumerable<T> sourceList = source as IList<T> ?? source.ToList();
-            if (sourceList.Count() == 1)
+            var sourceSize = sourceList.Count();
+
+            if (sourceSize == 1)
             {
                 return new[] { sourceList };
+            }
+
+            if ((combinationSize > sourceSize) && (mode == CombinationsGenerationMode.Distinct))
+            {
+                throw new InvalidOperationException("Cannot create combinations of sizes larger than the source collection when using distinct items. Check your combination size, or use AllowDuplicates mode.");
             }
 
             return sourceList
