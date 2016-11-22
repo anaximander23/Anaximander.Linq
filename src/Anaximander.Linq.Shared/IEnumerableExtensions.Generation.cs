@@ -96,13 +96,21 @@ namespace Anaximander.Linq
                             );
                     }
 
-                    return sourceList
-                        .SelectMany(x => sourceList
-                            .OrderBy(y => !x.Equals(y))
+                    var indexedSource = sourceList
+                       .Select((x, i) => new
+                       {
+                           Item = x,
+                           Index = i
+                       })
+                       .ToList();
+
+                    return indexedSource
+                        .SelectMany(x => indexedSource
+                            .OrderBy(y => x.Index != y.Index)
                             .Skip(mode == CombinationsGenerationMode.Distinct ? 1 : 0)
-                            .OrderBy(y => y)
+                            .OrderBy(y => y.Index)
                             .Combinations(combinationSize - 1, mode)
-                            .Select(y => new[] { x }.Concat(y))
+                            .Select(y => new[] { x }.Concat(y).Select(z => z.Item))
                         );
             }
         }
