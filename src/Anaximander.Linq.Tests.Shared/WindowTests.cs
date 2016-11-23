@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace Anaximander.Linq.Tests
@@ -74,6 +73,14 @@ namespace Anaximander.Linq.Tests
                 .ToArray();
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact(Skip = "in progress")]
+        public void WhenCollectionSizeIsSmallerThanWindowSize_ThrowsInvalidOperationException()
+        {
+            var collection = new[] { 1, 2, 3 };
+
+            Assert.Throws<InvalidOperationException>(() => collection.Window(4).ToList());
         }
     }
 }

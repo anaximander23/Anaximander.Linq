@@ -12,19 +12,15 @@ namespace Anaximander.Linq.Tests
         {
             IEnumerable<IEnumerable<object>> collection = null;
 
-            Assert.Throws<ArgumentNullException>(() => collection.BoxWhile((a, b) => true));
+            Assert.Throws<ArgumentNullException>(() => collection.BoxWhile((a, b) => true).ToList());
         }
 
         [Fact]
-        public void GivenEmptyCollection_ReturnsSourceCollectionAsOnlyElement()
+        public void GivenEmptyCollection_ThrowsInvalidOperationException()
         {
             var collection = new object[] { };
 
-            object[][] result = collection.BoxWhile((a, b) => true)
-                .Select(x => x.ToArray())
-                .ToArray();
-
-            Assert.Equal(new[] { new object[] { } }, result);
+            Assert.Throws<InvalidOperationException>(() => collection.BoxWhile((a, b) => true).ToList());
         }
 
         [Fact]

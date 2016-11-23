@@ -14,14 +14,27 @@ namespace Anaximander.Linq
 
             var buffer = new List<T>();
 
-            foreach (T item in source)
+            using (var enumerator = source.GetEnumerator())
             {
-                buffer.Add(item);
-
-                if (buffer.Count == windowSize)
+                for (int i = 0; i < windowSize; i++)
                 {
-                    yield return buffer;
+                    if (enumerator.MoveNext())
+                    {
+                        buffer.Add(enumerator.Current);
+                    }
+                }
+
+                yield return buffer;
+
+                while (enumerator.MoveNext())
+                {
                     buffer.RemoveAt(0);
+                    buffer.Add(enumerator.Current);
+
+                    if (buffer.Count == windowSize)
+                    {
+                        yield return buffer;
+                    }
                 }
             }
         }
