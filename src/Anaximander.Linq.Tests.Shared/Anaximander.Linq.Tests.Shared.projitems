@@ -13,5 +13,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)CartesianProductTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CombinationsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalMaximaTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowTests.cs" />
   </ItemGroup>
 </Project>

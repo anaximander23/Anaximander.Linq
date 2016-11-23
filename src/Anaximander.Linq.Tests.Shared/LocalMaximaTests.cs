@@ -22,5 +22,17 @@ namespace Anaximander.Linq.Tests
 
             Assert.Throws<InvalidOperationException>(() => collection.LocalMaxima().ToList());
         }
+
+        [Fact(Skip = "Issues with Window()")]
+        public void GivenSingleItem_ReturnsThatItem()
+        {
+            var item = 4;
+            var collection = new[] { item };
+
+            var result = collection.LocalMaxima().ToList();
+
+            Assert.Equal(result.Count, 1);
+            Assert.True(collection.SequenceEqual(result));
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace Anaximander.Linq
             {
                 throw new ArgumentNullException(nameof(source), "Source collection is null");
             }
+
             return new BoxedEnumerable<T>(source, sameBoxWhile);
         }
     }
