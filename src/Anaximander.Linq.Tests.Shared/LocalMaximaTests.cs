@@ -29,7 +29,7 @@ namespace Anaximander.Linq.Tests
             var item = 4;
             var collection = new[] { item };
 
-            var result = collection.LocalMaxima().ToList();
+            List<int> result = collection.LocalMaxima().ToList();
 
             Assert.Equal(result.Count, 1);
             Assert.True(collection.SequenceEqual(result));
@@ -41,7 +41,7 @@ namespace Anaximander.Linq.Tests
             var collection = new[] { 1, 2 };
             var expected = new[] { 2 };
 
-            var result = collection.LocalMaxima();
+            IEnumerable<int> result = collection.LocalMaxima();
 
             Assert.Equal(expected, result);
         }
@@ -52,7 +52,7 @@ namespace Anaximander.Linq.Tests
             var collection = new[] { 1, 2, 3, 2, 1 };
             var expected = new[] { 3 };
 
-            var result = collection.LocalMaxima();
+            IEnumerable<int> result = collection.LocalMaxima();
 
             Assert.Equal(expected, result);
         }
@@ -63,7 +63,7 @@ namespace Anaximander.Linq.Tests
             var collection = new[] { 5, 4, 3, 2, 1 };
             var expected = new[] { 5 };
 
-            var result = collection.LocalMaxima();
+            IEnumerable<int> result = collection.LocalMaxima();
 
             Assert.Equal(expected, result);
         }
@@ -74,7 +74,7 @@ namespace Anaximander.Linq.Tests
             var collection = new[] { 1, 2, 3, 4, 5 };
             var expected = new[] { 5 };
 
-            var result = collection.LocalMaxima();
+            IEnumerable<int> result = collection.LocalMaxima();
 
             Assert.Equal(expected, result);
         }
@@ -85,7 +85,7 @@ namespace Anaximander.Linq.Tests
             var collection = new[] { 3, 2, 1, 2, 3 };
             var expected = new[] { 3, 3 };
 
-            var result = collection.LocalMaxima();
+            IEnumerable<int> result = collection.LocalMaxima();
 
             Assert.Equal(expected, result);
         }
@@ -96,7 +96,7 @@ namespace Anaximander.Linq.Tests
             var collection = new[] { 3, 1, 2, 3, 1, 2, 3, 2, 1, 3, 2 };
             var expected = new[] { 3, 3, 3, 3 };
 
-            var result = collection.LocalMaxima();
+            IEnumerable<int> result = collection.LocalMaxima();
 
             Assert.Equal(expected, result);
         }
