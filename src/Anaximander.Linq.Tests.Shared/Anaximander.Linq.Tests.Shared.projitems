@@ -12,6 +12,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)BoxWhileTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CartesianProductTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CombinationsTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IndexOfLocalMaximaTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IndexOfLocalMinimaTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalMaximaTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalMinimaTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowTests.cs" />

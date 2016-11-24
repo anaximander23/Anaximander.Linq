@@ -114,79 +114,111 @@ namespace Anaximander.Linq
             }
         }
 
-        public static IEnumerable<int> IndexOfLocalMinima<TSource, TCompare>(this IEnumerable<TSource> source, Func<TSource, TCompare> comparison) where TCompare : IComparable
+        public static IEnumerable<int> IndexOfLocalMinima<TSource>(this IEnumerable<TSource> source) where TSource : IComparable
         {
-            return source.Select(comparison).IndexOfLocalMinima();
+            return source.IndexOfLocalMinima(x => x);
         }
 
-        public static IEnumerable<int> IndexOfLocalMinima<T>(this IEnumerable<T> source) where T : IComparable
+        public static IEnumerable<int> IndexOfLocalMinima<TSource, TCompare>(this IEnumerable<TSource> source, Func<TSource, TCompare> comparison) where TCompare : IComparable
         {
+            if (!source.Any())
+            {
+                throw new InvalidOperationException("Source collection is empty");
+            }
+
             var windows = source
                 .Select((x, i) => new
                 {
                     Index = i,
-                    Value = x
+                    Item = x,
+                    Value = comparison(x)
                 })
                 .Window(3)
-                .Select(x => x.ToList());
+                .Select(x => x.ToList())
+                .GetEnumerator();
 
-            var front = windows.First();
-            if (front[0].Value.CompareTo(front[1].Value) < 0)
+            if (windows.MoveNext())
             {
-                yield return front[0].Index;
-            }
+                var front = windows.Current;
 
-            var back = front;
-            foreach (var x in windows)
-            {
-                back = x;
-                if ((x[1].Value.CompareTo(x[0].Value) < 0) && (x[1].Value.CompareTo(x[2].Value) < 0))
+                if (front.OrderBy(x => x.Value).First().Index == 0)
                 {
-                    yield return x[1].Index;
+                    yield return front.First().Index;
+                }
+
+                var back = front;
+                while (windows.MoveNext())
+                {
+                    back = windows.Current;
+
+                    if (back.Count == 3)
+                    {
+                        if ((back[1].Value.CompareTo(back[0].Value) < 0) && (back[1].Value.CompareTo(back[2].Value) < 0))
+                        {
+                            yield return back[1].Index;
+                        }
+                    }
+                }
+
+                var backLargest = back.OrderBy(x => x.Value).First();
+                if ((backLargest.Index != 0) && (backLargest.Index == back.Max(x => x.Index)))
+                {
+                    yield return back.Last().Index;
                 }
             }
+        }
 
-            if (back[2].Value.CompareTo(back[1].Value) < 0)
-            {
-                yield return back[2].Index;
-            }
+        public static IEnumerable<int> IndexOfLocalMaxima<TSource>(this IEnumerable<TSource> source) where TSource : IComparable
+        {
+            return source.IndexOfLocalMaxima(x => x);
         }
 
         public static IEnumerable<int> IndexOfLocalMaxima<TSource, TCompare>(this IEnumerable<TSource> source, Func<TSource, TCompare> comparison) where TCompare : IComparable
         {
-            return source.Select(comparison).IndexOfLocalMaxima();
-        }
+            if (!source.Any())
+            {
+                throw new InvalidOperationException("Source collection is empty");
+            }
 
-        public static IEnumerable<int> IndexOfLocalMaxima<T>(this IEnumerable<T> source) where T : IComparable
-        {
             var windows = source
                 .Select((x, i) => new
                 {
                     Index = i,
-                    Value = x
+                    Item = x,
+                    Value = comparison(x)
                 })
                 .Window(3)
-                .Select(x => x.ToList());
+                .Select(x => x.ToList())
+                .GetEnumerator();
 
-            var front = windows.First();
-            if (front[0].Value.CompareTo(front[1].Value) > 0)
+            if (windows.MoveNext())
             {
-                yield return front[0].Index;
-            }
+                var front = windows.Current;
 
-            var back = front;
-            foreach (var x in windows)
-            {
-                back = x;
-                if ((x[1].Value.CompareTo(x[0].Value) > 0) && (x[1].Value.CompareTo(x[2].Value) > 0))
+                if (front.OrderByDescending(x => x.Value).First().Index == 0)
                 {
-                    yield return x[1].Index;
+                    yield return front.First().Index;
                 }
-            }
 
-            if (back[2].Value.CompareTo(back[1].Value) > 0)
-            {
-                yield return back[2].Index;
+                var back = front;
+                while (windows.MoveNext())
+                {
+                    back = windows.Current;
+
+                    if (back.Count == 3)
+                    {
+                        if ((back[1].Value.CompareTo(back[0].Value) > 0) && (back[1].Value.CompareTo(back[2].Value) > 0))
+                        {
+                            yield return back[1].Index;
+                        }
+                    }
+                }
+
+                var backLargest = back.OrderByDescending(x => x.Value).First();
+                if ((backLargest.Index != 0) && (backLargest.Index == back.Max(x => x.Index)))
+                {
+                    yield return back.Last().Index;
+                }
             }
         }
     }
