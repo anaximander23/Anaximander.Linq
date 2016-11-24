@@ -40,25 +40,28 @@ namespace Anaximander.Linq
             do
             {
                 endReached = !_windowEnumerator.MoveNext();
-                moved = moved + 1;
 
                 if (!endReached)
                 {
+                    moved = moved + 1;
+
                     if ((moved == _sliceSize) || (sliceIndex == 0))
                     {
                         moved = 0;
                         sliceIndex = sliceIndex + 1;
 
                         List<T> current = _windowEnumerator.Current.ToList();
-                        _processedSlices.Add(current);
-                        yield return current;
+
+                        if (current.Count() == _sliceSize)
+                        {
+                            _processedSlices.Add(current);
+                            yield return current;
+                        }
                     }
                 }
-                else
-                {
-                    _remainder = _windowEnumerator.Current.Skip(_sliceSize - moved);
-                }
             } while (!endReached);
+
+            _remainder = _windowEnumerator.Current.Skip(_sliceSize - moved).ToList();
         }
 
         private IEnumerable<T> GetRemainder()
