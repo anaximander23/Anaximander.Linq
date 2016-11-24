@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IndexOfLocalMinimaTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalMaximaTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocalMinimaTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PermuteTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowTests.cs" />
   </ItemGroup>
 </Project>
