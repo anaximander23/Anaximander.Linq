@@ -31,8 +31,7 @@ namespace Anaximander.Linq.Tests
 
             List<int> result = collection.LocalMaxima().ToList();
 
-            Assert.Equal(result.Count, 1);
-            Assert.True(collection.SequenceEqual(result));
+            Assert.Equal(collection, result);
         }
 
         [Fact]
