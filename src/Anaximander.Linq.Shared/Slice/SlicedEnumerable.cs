@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,10 +7,17 @@ namespace Anaximander.Linq
 {
     public class SlicedEnumerable<T> : ISlicedEnumerable<T>
     {
-        public SlicedEnumerable(IEnumerable<T> source, int sliceSize)
+        public SlicedEnumerable(IEnumerable<T> source, int sliceSize, int maxNumberOfSlices = 0)
         {
-            _sliceSize = sliceSize;
+            if (sliceSize < 1)
+            {
+                throw new ArgumentException("Slice size must be equal to or greater than 1", nameof(sliceSize));
+            }
 
+            _sliceSize = sliceSize;
+            _maxNumberOfSlices = maxNumberOfSlices;
+
+            _source = source;
             _windowEnumerator = source.Window(_sliceSize).GetEnumerator();
 
             _processedSlices = new List<IEnumerable<T>>();
@@ -19,7 +27,9 @@ namespace Anaximander.Linq
         public IEnumerable<T> Remainder => GetRemainder();
 
         private readonly int _sliceSize;
+        private readonly int _maxNumberOfSlices;
 
+        private readonly IEnumerable<T> _source;
         private readonly IEnumerator<IEnumerable<T>> _windowEnumerator;
         private readonly List<IEnumerable<T>> _processedSlices;
         private IEnumerable<T> _remainder;
@@ -57,11 +67,20 @@ namespace Anaximander.Linq
                             _processedSlices.Add(current);
                             yield return current;
                         }
+
+                        if ((_maxNumberOfSlices != 0) && (sliceIndex == _maxNumberOfSlices))
+                        {
+                            _remainder = _source.Skip(sliceIndex * _sliceSize).ToList();
+                            break;
+                        }
                     }
                 }
             } while (!endReached);
 
-            _remainder = _windowEnumerator.Current.Skip(_sliceSize - moved).ToList();
+            if (_remainder == null)
+            {
+                _remainder = _windowEnumerator.Current.Skip(_sliceSize - moved).ToList();
+            }
         }
 
         private IEnumerable<T> GetRemainder()
