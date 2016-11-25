@@ -24,6 +24,22 @@ namespace Anaximander.Linq.Tests
         }
 
         [Fact]
+        public void AskedForZeroSlices_ThrowsArgumentException()
+        {
+            IEnumerable<int> collection = new[] { 1, 2, 3 };
+
+            Assert.Throws<ArgumentException>(() => collection.Slices(0).ToList());
+        }
+
+        [Fact]
+        public void AskedForNegativeSliceSize_ThrowsArgumentException()
+        {
+            IEnumerable<int> collection = new[] { 1, 2, 3 };
+
+            Assert.Throws<ArgumentException>(() => collection.Slices(-1).ToList());
+        }
+
+        [Fact]
         public void GivenCollectionSizeSmallerThanSliceSize_ThrowsInvalidOperationException()
         {
             var collection = new[] { 1, 2, 3 };

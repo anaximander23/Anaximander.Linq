@@ -28,6 +28,22 @@ namespace Anaximander.Linq.Tests
         }
 
         [Fact]
+        public void AskedForSliceSizeOfZero_ThrowsArgumentException()
+        {
+            IEnumerable<int> collection = new[] { 1, 2, 3 };
+
+            Assert.Throws<ArgumentException>(() => collection.SlicesOf(0).ToList());
+        }
+
+        [Fact]
+        public void AskedForNegativeSliceSize_ThrowsArgumentException()
+        {
+            IEnumerable<int> collection = new[] { 1, 2, 3 };
+
+            Assert.Throws<ArgumentException>(() => collection.SlicesOf(-1).ToList());
+        }
+
+        [Fact]
         public void GivenCollectionSizeEqualToSliceSize_RemainderIsEmpty()
         {
             var collection = new[] { 1, 2, 3 };
@@ -128,6 +144,42 @@ namespace Anaximander.Linq.Tests
 
             var resultSlices = collection.SlicesOf(3)
                 .Slices
+                .Select(x => x.ToArray())
+                .ToArray();
+
+            Assert.Equal(expectedSlices, resultSlices);
+        }
+
+        [Fact]
+        public void GivenEnumeratedSlices_SlicesAreTheSameOnSubsequentEvaluations()
+        {
+            var collection = new[] { 1, 2, 3, 4, 5, 67, 8, 9, 0 };
+
+            var sliced = collection.SlicesOf(3);
+
+            var slicesFirst = sliced.Slices.ToList();
+            var remainderFirst = sliced.Remainder.ToList();
+
+            var slicesSecond = sliced.Slices.ToList();
+            var remainderSecond = sliced.Remainder.ToList();
+
+            Assert.Equal(slicesFirst, slicesSecond);
+            Assert.Equal(remainderFirst, remainderSecond);
+        }
+
+        [Fact]
+        public void GivenValidCollection_SlicedOutputIsEnumerable()
+        {
+            var collection = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
+            var expectedSlices = new[]
+            {
+                new[] { 1 ,2, 3 },
+                new[] { 4, 5, 6 },
+                new[] { 7, 8, 9 },
+                new[] { 0 }
+            };
+
+            var resultSlices = collection.SlicesOf(3)
                 .Select(x => x.ToArray())
                 .ToArray();
 
