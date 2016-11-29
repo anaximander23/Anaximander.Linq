@@ -14,9 +14,9 @@ namespace Anaximander.Linq
 
             var buffer = new List<T>();
 
-            using (var enumerator = source.GetEnumerator())
+            using (IEnumerator<T> enumerator = source.GetEnumerator())
             {
-                for (int i = 0; i < windowSize; i++)
+                for (var i = 0; i < windowSize; i++)
                 {
                     if (enumerator.MoveNext())
                     {

@@ -81,7 +81,7 @@ namespace Anaximander.Linq.Tests
                 .ToArray();
 
             Assert.Equal(expectedSlices, resultSlices);
-            Assert.Equal(new[] { 3 }, resultRemainder);
+            Assert.Equal(expectedRemainder, resultRemainder);
         }
 
         [Fact]

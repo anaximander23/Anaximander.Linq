@@ -36,8 +36,8 @@ namespace Anaximander.Linq
 
         private IEnumerable<IEnumerable<T>> GetSlices()
         {
-            int sliceIndex = 0;
-            int moved = 0;
+            var sliceIndex = 0;
+            var moved = 0;
 
             while (sliceIndex < _processedSlices.Count)
             {
@@ -45,7 +45,7 @@ namespace Anaximander.Linq
                 sliceIndex = sliceIndex + 1;
             }
 
-            bool endReached = false;
+            var endReached = false;
 
             do
             {
@@ -62,7 +62,7 @@ namespace Anaximander.Linq
 
                         List<T> current = _windowEnumerator.Current.ToList();
 
-                        if (current.Count() == _sliceSize)
+                        if (current.Count == _sliceSize)
                         {
                             _processedSlices.Add(current);
                             yield return current;

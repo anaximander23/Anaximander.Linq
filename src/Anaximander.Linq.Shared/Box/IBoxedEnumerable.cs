@@ -2,7 +2,7 @@
 
 namespace Anaximander.Linq
 {
-    public interface IBoxedEnumerable<T> : IEnumerable<IEnumerable<T>>
+    public interface IBoxedEnumerable<out T> : IEnumerable<IEnumerable<T>>
     {
     }
 }

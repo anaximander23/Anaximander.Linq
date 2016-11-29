@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Anaximander.Linq
 {
-    public class BoxedEnumerable<T> : IBoxedEnumerable<T>
+    internal class BoxedEnumerable<T> : IBoxedEnumerable<T>
     {
         public BoxedEnumerable(IEnumerable<T> source, Func<T, T, bool> sameBoxWhile)
         {

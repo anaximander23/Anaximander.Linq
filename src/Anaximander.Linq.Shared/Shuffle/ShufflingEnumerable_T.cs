@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Anaximander.Linq;
 
 namespace Anaximander.Linq
 {
@@ -16,7 +15,7 @@ namespace Anaximander.Linq
 
         private IEnumerator<T> GetRandomEnumerator()
         {
-            return _source.OrderBy(x => Random.Next()).GetEnumerator();
+            return _source.OrderBy(x => ShufflingEnumerable.Random.Next()).GetEnumerator();
         }
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator() => GetRandomEnumerator();

@@ -63,6 +63,7 @@ namespace Anaximander.Linq
         /// </summary>
         /// <param name="source">A set of items</param>
         /// <param name="combinationSize">The number of items per result set</param>
+        /// <param name="mode">The desired mode: whether to use each item from the source set only once, or allow re-use. (Note that Distinct mode requires a <paramref name="combinationSize"/> greater than the source collection length.)</param>
         /// <returns></returns>
         public static IEnumerable<IEnumerable<T>> Combinations<T>(this IEnumerable<T> source, int combinationSize, CombinationsGenerationMode mode)
         {
@@ -77,7 +78,7 @@ namespace Anaximander.Linq
             }
 
             IEnumerable<T> sourceList = source as IList<T> ?? source.ToList();
-            var sourceSize = sourceList.Count();
+            int sourceSize = sourceList.Count();
 
             switch (sourceSize)
             {
