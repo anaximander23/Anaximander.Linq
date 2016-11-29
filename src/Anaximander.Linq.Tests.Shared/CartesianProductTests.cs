@@ -42,8 +42,7 @@ namespace Anaximander.Linq.Tests
             Assert.Equal(expected, result);
         }
 
-        [Theory]
-        [InlineData]
+        [Fact]
         public void GivenTwoCollections_ReturnsCorrectCombinations()
         {
             var collection = new[]
@@ -72,8 +71,7 @@ namespace Anaximander.Linq.Tests
             Assert.Equal(expected, result);
         }
 
-        [Theory]
-        [InlineData]
+        [Fact]
         public void GivenNCollections_ReturnsCorrectCombinations()
         {
             var collection = new[]
