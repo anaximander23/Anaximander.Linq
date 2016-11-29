@@ -9,7 +9,11 @@
         <description>Useful LINQ extension methods and utility classes.</description>
     </metadata>
     <files>
-        <file src="Anaximander.Linq.DotNetCore\bin\Debug\netstandard1.6\Anaximander.Linq.DotNetCore.dll" target="lib\dnxcore50\Anaximander.Linq.DotNetCore.dll" />
-        <file src="Anaximander.Linq\bin\Debug\Anaximander.Linq.dll" target="lib\net40\Anaximander.Linq.dll" />
+        
+        <file src="Anaximander.Linq.DotNet450\bin\Release\Anaximander.Linq.dll" target="lib\net40\Anaximander.Linq.dll" />
+        <file src="Anaximander.Linq.DotNet450\bin\Release\Anaximander.Linq.xml" target="lib\net40\Anaximander.Linq.xml" />
+      
+        <file src="Anaximander.Linq.DotNetStandard11\bin\Release\Anaximander.Linq.dll" target="lib\netstandard1.1\Anaximander.Linq.dll" />
+        <file src="Anaximander.Linq.DotNetStandard11\bin\Release\Anaximander.Linq.xml" target="lib\netstandard1.1\Anaximander.Linq.xml" />
     </files>
 </package>

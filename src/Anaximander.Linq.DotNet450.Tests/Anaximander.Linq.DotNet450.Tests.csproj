@@ -77,9 +77,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Anaximander.Linq\Anaximander.Linq.csproj">
-      <Project>{4B24613B-663D-461C-8B70-AAA901B59F65}</Project>
-      <Name>Anaximander.Linq</Name>
+    <ProjectReference Include="..\Anaximander.Linq.DotNet450\Anaximander.Linq.DotNet450.csproj">
+      <Project>{4b24613b-663d-461c-8b70-aaa901b59f65}</Project>
+      <Name>Anaximander.Linq.DotNet450</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems" Label="Shared" />

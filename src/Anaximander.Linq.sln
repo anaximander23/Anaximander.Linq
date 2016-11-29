@@ -5,21 +5,31 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Anaximander.Linq.Shared", "Anaximander.Linq.Shared\Anaximander.Linq.Shared.shproj", "{96E903E6-22A0-4C12-8807-C7088EEFD985}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq", "Anaximander.Linq\Anaximander.Linq.csproj", "{4B24613B-663D-461C-8B70-AAA901B59F65}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{58A99285-4C92-4FA1-AE6A-9E5B8F87E743}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq.Tests", "Anaximander.Linq.Tests\Anaximander.Linq.Tests.csproj", "{0A7ABDE9-BC1D-486A-97CF-9C1418581916}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Anaximander.Linq.Tests.Shared", "Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.shproj", "{1CE07C75-F478-4B67-ADD4-BF352A2E4796}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{593EDAE0-196D-4F44-AF5C-AC6B646EB51B}"
+	ProjectSection(SolutionItems) = preProject
+		Anaximander.Linq.nuspec = Anaximander.Linq.nuspec
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq.DotNet450", "Anaximander.Linq.DotNet450\Anaximander.Linq.DotNet450.csproj", "{4B24613B-663D-461C-8B70-AAA901B59F65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq.DotNet450.Tests", "Anaximander.Linq.DotNet450.Tests\Anaximander.Linq.DotNet450.Tests.csproj", "{0A7ABDE9-BC1D-486A-97CF-9C1418581916}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Anaximander.Linq.DotNetStandard11", "Anaximander.Linq.DotNetStandard11\Anaximander.Linq.DotNetStandard11.xproj", "{F96199B5-CE37-44E1-B52E-44B826111837}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq.DotNetStandard11.Tests", "Anaximander.Linq.DotNetStandard11.Tests\Anaximander.Linq.DotNetStandard11.Tests.csproj", "{88E06802-8014-46DF-89D1-29FD0C2C046D}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{0a7abde9-bc1d-486a-97cf-9c1418581916}*SharedItemsImports = 4
 		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{1ce07c75-f478-4b67-add4-bf352a2e4796}*SharedItemsImports = 13
 		Anaximander.Linq.Shared\Anaximander.Linq.Shared.projitems*{4b24613b-663d-461c-8b70-aaa901b59f65}*SharedItemsImports = 4
+		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{88e06802-8014-46df-89d1-29fd0c2c046d}*SharedItemsImports = 4
 		Anaximander.Linq.Shared\Anaximander.Linq.Shared.projitems*{96e903e6-22a0-4c12-8807-c7088eefd985}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,14 +45,24 @@ Global
 		{0A7ABDE9-BC1D-486A-97CF-9C1418581916}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A7ABDE9-BC1D-486A-97CF-9C1418581916}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A7ABDE9-BC1D-486A-97CF-9C1418581916}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F96199B5-CE37-44E1-B52E-44B826111837}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F96199B5-CE37-44E1-B52E-44B826111837}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F96199B5-CE37-44E1-B52E-44B826111837}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F96199B5-CE37-44E1-B52E-44B826111837}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88E06802-8014-46DF-89D1-29FD0C2C046D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88E06802-8014-46DF-89D1-29FD0C2C046D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88E06802-8014-46DF-89D1-29FD0C2C046D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88E06802-8014-46DF-89D1-29FD0C2C046D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{96E903E6-22A0-4C12-8807-C7088EEFD985} = {58A99285-4C92-4FA1-AE6A-9E5B8F87E743}
+		{1CE07C75-F478-4B67-ADD4-BF352A2E4796} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
 		{4B24613B-663D-461C-8B70-AAA901B59F65} = {58A99285-4C92-4FA1-AE6A-9E5B8F87E743}
 		{0A7ABDE9-BC1D-486A-97CF-9C1418581916} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
-		{1CE07C75-F478-4B67-ADD4-BF352A2E4796} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
+		{F96199B5-CE37-44E1-B52E-44B826111837} = {58A99285-4C92-4FA1-AE6A-9E5B8F87E743}
+		{88E06802-8014-46DF-89D1-29FD0C2C046D} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
 	EndGlobalSection
 EndGlobal
