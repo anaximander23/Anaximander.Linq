@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Anaximander.Linq
 {
+    /// <summary>
+    /// Extension methods for IEnumerable.
+    /// </summary>
     public static partial class IEnumerableExtensions
     {
         /// <summary>

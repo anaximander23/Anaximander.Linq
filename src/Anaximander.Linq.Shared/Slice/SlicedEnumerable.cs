@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Anaximander.Linq
 {
-    public class SlicedEnumerable<T> : ISlicedEnumerable<T>
+    internal class SlicedEnumerable<T> : ISlicedEnumerable<T>
     {
         public SlicedEnumerable(IEnumerable<T> source, int sliceSize, int maxNumberOfSlices = 0)
         {

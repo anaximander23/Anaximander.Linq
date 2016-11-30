@@ -63,7 +63,7 @@ namespace Anaximander.Linq
         /// </summary>
         /// <param name="source">A set of items</param>
         /// <param name="combinationSize">The number of items per result set</param>
-        /// <param name="mode">The desired mode: whether to use each item from the source set only once, or allow re-use. (Note that Distinct mode requires a <paramref name="combinationSize"/> greater than the source collection length.)</param>
+        /// <param name="mode">The desired mode: whether to use each item from the source set only once, or allow re-use. (Note that Distinct mode requires a <paramref name="combinationSize"/> equal to or greater than the source collection length.)</param>
         /// <returns></returns>
         public static IEnumerable<IEnumerable<T>> Combinations<T>(this IEnumerable<T> source, int combinationSize, CombinationsGenerationMode mode)
         {
@@ -117,9 +117,19 @@ namespace Anaximander.Linq
         }
     }
 
+    /// <summary>
+    /// How to handle duplication when generating combinations.
+    /// </summary>
     public enum CombinationsGenerationMode
     {
+        /// <summary>
+        /// Use each source item only once. Note: Requires combinationSize to be equal to or greater than the source collection size.
+        /// </summary>
         Distinct,
+
+        /// <summary>
+        /// Allow source items to be used multiple times.
+        /// </summary>
         AllowDuplicates
     }
 }

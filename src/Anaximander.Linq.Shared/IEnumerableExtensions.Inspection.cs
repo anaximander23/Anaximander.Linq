@@ -6,11 +6,22 @@ namespace Anaximander.Linq
 {
     public static partial class IEnumerableExtensions
     {
+        /// <summary>
+        /// Finds the local minima in a collection of values; that is, elements that are smaller than the elements either side.
+        /// </summary>
+        /// <param name="source">A collection of IComparable values or items.</param>
+        /// <returns>The values of the minima.</returns>
         public static IEnumerable<T> LocalMinima<T>(this IEnumerable<T> source) where T : IComparable
         {
             return source.LocalMinima(x => x);
         }
 
+        /// <summary>
+        /// Finds the items whose comparison values are local minima in a collection of items; that is, elements whose comparison values are smaller than those of the elements either side.
+        /// </summary>
+        /// <param name="source">A collection of values or items.</param>
+        /// <param name="comparison">A function to derive an IComparable value from each item.</param>
+        /// <returns>The values of the minima.</returns>
         public static IEnumerable<TSource> LocalMinima<TSource, TCompare>(this IEnumerable<TSource> source, Func<TSource, TCompare> comparison) where TCompare : IComparable
         {
             if (!source.Any())
@@ -60,11 +71,22 @@ namespace Anaximander.Linq
             }
         }
 
+        /// <summary>
+        /// Finds the local maxima in a collection of values; that is, elements that are larger than the elements either side.
+        /// </summary>
+        /// <param name="source">A collection of IComparable values or items.</param>
+        /// <returns>The values of the maxima.</returns>
         public static IEnumerable<T> LocalMaxima<T>(this IEnumerable<T> source) where T : IComparable
         {
             return source.LocalMaxima(x => x);
         }
 
+        /// <summary>
+        /// Finds the items whose comparison values are local maxima in a collection of items; that is, elements whose comparison values are larger than those of the elements either side.
+        /// </summary>
+        /// <param name="source">A collection of values or items.</param>
+        /// <param name="comparison">A function to derive an IComparable value from each item.</param>
+        /// <returns>The values of the maxima.</returns>
         public static IEnumerable<TSource> LocalMaxima<TSource, TCompare>(this IEnumerable<TSource> source, Func<TSource, TCompare> comparison) where TCompare : IComparable
         {
             if (!source.Any())
@@ -114,11 +136,22 @@ namespace Anaximander.Linq
             }
         }
 
+        /// <summary>
+        /// Finds the indices of the local minima in a collection of values; that is, elements that are smaller than the elements either side.
+        /// </summary>
+        /// <param name="source">A collection of IComparable values or items.</param>
+        /// <returns>The indices of the minima within the source collection.</returns>
         public static IEnumerable<int> IndexOfLocalMinima<TSource>(this IEnumerable<TSource> source) where TSource : IComparable
         {
             return source.IndexOfLocalMinima(x => x);
         }
 
+        /// <summary>
+        /// Finds the indices of items whose comparison values are local minima in a collection of items; that is, elements whose comparison values are smaller than those of the elements either side.
+        /// </summary>
+        /// <param name="source">A collection of values or items.</param>
+        /// <param name="comparison">A function to derive an IComparable value from each item.</param>
+        /// <returns>The values of the minima.</returns>
         public static IEnumerable<int> IndexOfLocalMinima<TSource, TCompare>(this IEnumerable<TSource> source, Func<TSource, TCompare> comparison) where TCompare : IComparable
         {
             if (!source.Any())
@@ -168,11 +201,22 @@ namespace Anaximander.Linq
             }
         }
 
+        /// <summary>
+        /// Finds the indices of the local maxima in a collection of values; that is, elements that are larger than the elements either side.
+        /// </summary>
+        /// <param name="source">A collection of IComparable values or items.</param>
+        /// <returns>The indices of the maxima within the source collection.</returns>
         public static IEnumerable<int> IndexOfLocalMaxima<TSource>(this IEnumerable<TSource> source) where TSource : IComparable
         {
             return source.IndexOfLocalMaxima(x => x);
         }
 
+        /// <summary>
+        /// Finds the items whose comparison values are local maxima in a collection of items; that is, elements whose comparison values are larger than those of the elements either side.
+        /// </summary>
+        /// <param name="source">A collection of values or items.</param>
+        /// <param name="comparison">A function to derive an IComparable value from each item.</param>
+        /// <returns>The values of the maxima.</returns>
         public static IEnumerable<int> IndexOfLocalMaxima<TSource, TCompare>(this IEnumerable<TSource> source, Func<TSource, TCompare> comparison) where TCompare : IComparable
         {
             if (!source.Any())
