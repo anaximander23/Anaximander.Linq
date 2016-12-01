@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Anaximander.Linq
 {
@@ -17,6 +18,11 @@ namespace Anaximander.Linq
             if (source == null)
             {
                 throw new ArgumentNullException(nameof(source), "Source collection is null");
+            }
+
+            if (!source.Any())
+            {
+                yield break;
             }
 
             var buffer = new List<T>();

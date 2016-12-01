@@ -79,7 +79,7 @@ namespace Anaximander.Linq
 
             if (_remainder == null)
             {
-                _remainder = _windowEnumerator.Current.Skip(_sliceSize - moved).ToList();
+                _remainder = _windowEnumerator?.Current?.Skip(_sliceSize - moved)?.ToList() ?? new List<T>();
             }
         }
 
@@ -88,10 +88,6 @@ namespace Anaximander.Linq
             if (_remainder == null)
             {
                 GetSlices().ToList();
-            }
-            if (_remainder == null)
-            {
-                _remainder = new List<T>();
             }
 
             foreach (T item in _remainder)

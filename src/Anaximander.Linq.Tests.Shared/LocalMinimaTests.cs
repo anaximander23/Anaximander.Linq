@@ -16,11 +16,13 @@ namespace Anaximander.Linq.Tests
         }
 
         [Fact]
-        public void GivenEmptyCollection_ThrowsInvalidOperationException()
+        public void GivenEmptyCollection_ReturnsEmptyCollection()
         {
             IEnumerable<int> collection = new List<int>();
 
-            Assert.Throws<InvalidOperationException>(() => collection.LocalMinima().ToList());
+            var result = collection.LocalMinima().ToList();
+
+            Assert.Empty(result);
         }
 
         [Fact]
@@ -85,7 +87,7 @@ namespace Anaximander.Linq.Tests
             var collection = new[] { 1, 2, 3, 2, 1 };
             var expected = new[] { 1, 1 };
 
-            IEnumerable<int> result = collection.LocalMinima();
+            var result = collection.LocalMinima().ToArray();
 
             Assert.Equal(expected, result);
         }

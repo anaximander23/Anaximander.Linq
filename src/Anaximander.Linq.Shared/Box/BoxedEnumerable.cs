@@ -31,37 +31,34 @@ namespace Anaximander.Linq
                 {
                     endReached = !windowEnumerator.MoveNext();
 
+                    if (buffer == null)
+                    {
+                        buffer = new List<T>();
+                    }
+
+                    T current = default(T);
+
                     if (windowEnumerator.Current == null)
                     {
-                        yield return _source;
                         yield break;
                     }
 
-                    T current = windowEnumerator.Current.First();
-                    if (buffer == null)
+                    if (windowEnumerator.Current.Count() == 1)
                     {
-                        buffer = new List<T> { current };
-                    }
-
-                    if (windowEnumerator.Current.Count() < 2)
-                    {
+                        buffer.Add(current);
                         yield return buffer;
                         yield break;
                     }
 
+                    current = windowEnumerator.Current.First();
+                    buffer.Add(current);
+
                     T next = windowEnumerator.Current.Last();
 
-                    if (!endReached)
+                    if (!_sameBoxWhile(current, next))
                     {
-                        if (_sameBoxWhile(current, next))
-                        {
-                            buffer.Add(next);
-                        }
-                        else
-                        {
-                            yield return buffer;
-                            buffer = new List<T> { next };
-                        }
+                        yield return buffer;
+                        buffer = new List<T>();
                     }
                 } while (!endReached);
 

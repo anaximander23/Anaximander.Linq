@@ -16,6 +16,16 @@ namespace Anaximander.Linq.Tests
         }
 
         [Fact]
+        public void GivenEmptyCollection_ReturnsEmptyCollection()
+        {
+            var collection = new List<object>();
+
+            var result = collection.Window(3).ToList();
+
+            Assert.Empty(result);
+        }
+
+        [Fact]
         public void GivenValidCollection_CanProduceWindowSizeOfOne()
         {
             var collection = new[] { 1, 2, 3, 4, 5 };

@@ -16,11 +16,13 @@ namespace Anaximander.Linq.Tests
         }
 
         [Fact]
-        public void GivenEmptyCollection_ThrowsInvalidOperationException()
+        public void GivenEmptyCollection_ReturnsEmptyCollection()
         {
             var collection = new object[] { };
 
-            Assert.Throws<InvalidOperationException>(() => collection.BoxWhile((a, b) => true).ToList());
+            var result = collection.BoxWhile((a, b) => true).ToList();
+
+            Assert.Empty(result);
         }
 
         [Fact]

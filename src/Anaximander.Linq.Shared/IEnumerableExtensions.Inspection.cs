@@ -24,51 +24,7 @@ namespace Anaximander.Linq
         /// <returns>The values of the minima.</returns>
         public static IEnumerable<TSource> LocalMinima<TSource, TCompare>(this IEnumerable<TSource> source, Func<TSource, TCompare> comparison) where TCompare : IComparable
         {
-            if (!source.Any())
-            {
-                throw new InvalidOperationException("Source collection is empty");
-            }
-
-            var windows = source
-                .Select((x, i) => new
-                {
-                    Index = i,
-                    Item = x,
-                    Value = comparison(x)
-                })
-                .Window(3)
-                .Select(x => x.ToList())
-                .GetEnumerator();
-
-            if (windows.MoveNext())
-            {
-                var front = windows.Current;
-
-                if (front.OrderBy(x => x.Value).First().Index == 0)
-                {
-                    yield return front.First().Item;
-                }
-
-                var back = front;
-                while (windows.MoveNext())
-                {
-                    back = windows.Current;
-
-                    if (back.Count == 3)
-                    {
-                        if ((back[1].Value.CompareTo(back[0].Value) < 0) && (back[1].Value.CompareTo(back[2].Value) < 0))
-                        {
-                            yield return back[1].Item;
-                        }
-                    }
-                }
-
-                var backLargest = back.OrderBy(x => x.Value).First();
-                if ((backLargest.Index != 0) && (backLargest.Index == back.Max(x => x.Index)))
-                {
-                    yield return back.Last().Item;
-                }
-            }
+            return source.FindInflectionPoints(comparison, false).Select(x => x.Item);
         }
 
         /// <summary>
@@ -89,51 +45,7 @@ namespace Anaximander.Linq
         /// <returns>The values of the maxima.</returns>
         public static IEnumerable<TSource> LocalMaxima<TSource, TCompare>(this IEnumerable<TSource> source, Func<TSource, TCompare> comparison) where TCompare : IComparable
         {
-            if (!source.Any())
-            {
-                throw new InvalidOperationException("Source collection is empty");
-            }
-
-            var windows = source
-                .Select((x, i) => new
-                {
-                    Index = i,
-                    Item = x,
-                    Value = comparison(x)
-                })
-                .Window(3)
-                .Select(x => x.ToList())
-                .GetEnumerator();
-
-            if (windows.MoveNext())
-            {
-                var front = windows.Current;
-
-                if (front.OrderByDescending(x => x.Value).First().Index == 0)
-                {
-                    yield return front.First().Item;
-                }
-
-                var back = front;
-                while (windows.MoveNext())
-                {
-                    back = windows.Current;
-
-                    if (back.Count == 3)
-                    {
-                        if ((back[1].Value.CompareTo(back[0].Value) > 0) && (back[1].Value.CompareTo(back[2].Value) > 0))
-                        {
-                            yield return back[1].Item;
-                        }
-                    }
-                }
-
-                var backLargest = back.OrderByDescending(x => x.Value).First();
-                if ((backLargest.Index != 0) && (backLargest.Index == back.Max(x => x.Index)))
-                {
-                    yield return back.Last().Item;
-                }
-            }
+            return source.FindInflectionPoints(comparison, true).Select(x => x.Item);
         }
 
         /// <summary>
@@ -154,51 +66,7 @@ namespace Anaximander.Linq
         /// <returns>The values of the minima.</returns>
         public static IEnumerable<int> IndexOfLocalMinima<TSource, TCompare>(this IEnumerable<TSource> source, Func<TSource, TCompare> comparison) where TCompare : IComparable
         {
-            if (!source.Any())
-            {
-                throw new InvalidOperationException("Source collection is empty");
-            }
-
-            var windows = source
-                .Select((x, i) => new
-                {
-                    Index = i,
-                    Item = x,
-                    Value = comparison(x)
-                })
-                .Window(3)
-                .Select(x => x.ToList())
-                .GetEnumerator();
-
-            if (windows.MoveNext())
-            {
-                var front = windows.Current;
-
-                if (front.OrderBy(x => x.Value).First().Index == 0)
-                {
-                    yield return front.First().Index;
-                }
-
-                var back = front;
-                while (windows.MoveNext())
-                {
-                    back = windows.Current;
-
-                    if (back.Count == 3)
-                    {
-                        if ((back[1].Value.CompareTo(back[0].Value) < 0) && (back[1].Value.CompareTo(back[2].Value) < 0))
-                        {
-                            yield return back[1].Index;
-                        }
-                    }
-                }
-
-                var backLargest = back.OrderBy(x => x.Value).First();
-                if ((backLargest.Index != 0) && (backLargest.Index == back.Max(x => x.Index)))
-                {
-                    yield return back.Last().Index;
-                }
-            }
+            return source.FindInflectionPoints(comparison, false).Select(x => x.Index);
         }
 
         /// <summary>
@@ -219,51 +87,86 @@ namespace Anaximander.Linq
         /// <returns>The values of the maxima.</returns>
         public static IEnumerable<int> IndexOfLocalMaxima<TSource, TCompare>(this IEnumerable<TSource> source, Func<TSource, TCompare> comparison) where TCompare : IComparable
         {
+            return source.FindInflectionPoints(comparison, true).Select(x => x.Index);
+        }
+
+        private static IEnumerable<IndexedItem<TSource>> FindInflectionPoints<TSource, TCompare>(this IEnumerable<TSource> source, Func<TSource, TCompare> comparison, bool findMaxima) where TCompare : IComparable
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source), "Source collection is null");
+            }
             if (!source.Any())
             {
-                throw new InvalidOperationException("Source collection is empty");
+                yield break;
             }
 
-            var windows = source
-                .Select((x, i) => new
-                {
-                    Index = i,
-                    Item = x,
-                    Value = comparison(x)
-                })
+            using (var windows = source
+                .Select((x, i) => new ComparableItem<TSource>(i, x, comparison(x)))
                 .Window(3)
                 .Select(x => x.ToList())
-                .GetEnumerator();
-
-            if (windows.MoveNext())
+                .GetEnumerator())
             {
-                var front = windows.Current;
-
-                if (front.OrderByDescending(x => x.Value).First().Index == 0)
+                if (windows.MoveNext())
                 {
-                    yield return front.First().Index;
-                }
+                    var front = windows.Current;
 
-                var back = front;
-                while (windows.MoveNext())
-                {
-                    back = windows.Current;
+                    Func<IEnumerable<ComparableItem<TSource>>, IOrderedEnumerable<ComparableItem<TSource>>> order = x =>
+                    (findMaxima
+                        ? x.OrderByDescending(o => o.Value)
+                        : x.OrderBy(o => o.Value));
 
-                    if (back.Count == 3)
+                    if (order(front).First().Index == 0)
                     {
-                        if ((back[1].Value.CompareTo(back[0].Value) > 0) && (back[1].Value.CompareTo(back[2].Value) > 0))
+                        yield return front.First();
+                    }
+
+                    var back = front;
+                    while (windows.MoveNext())
+                    {
+                        back = windows.Current;
+
+                        Func<int, bool> check = x => (findMaxima ? x > 0 : x < 0);
+
+                        if (back.Count == 3)
                         {
-                            yield return back[1].Index;
+                            if (check(back[1].Value.CompareTo(back[0].Value)) && check(back[1].Value.CompareTo(back[2].Value)))
+                            {
+                                yield return back[1];
+                            }
                         }
                     }
-                }
 
-                var backLargest = back.OrderByDescending(x => x.Value).First();
-                if ((backLargest.Index != 0) && (backLargest.Index == back.Max(x => x.Index)))
-                {
-                    yield return back.Last().Index;
+                    var backLargest = order(back).First();
+                    if ((backLargest.Index != 0) && (backLargest.Index == back.Max(x => x.Index)))
+                    {
+                        yield return back.Last();
+                    }
                 }
             }
+        }
+
+        private class IndexedItem<T>
+        {
+            public IndexedItem(int index, T item)
+            {
+                Index = index;
+                Item = item;
+            }
+
+            public readonly int Index;
+            public readonly T Item;
+        }
+
+        private class ComparableItem<T> : IndexedItem<T>
+        {
+            public ComparableItem(int index, T item, IComparable comparisonValue)
+                : base(index, item)
+            {
+                Value = comparisonValue;
+            }
+
+            public readonly IComparable Value;
         }
     }
 }

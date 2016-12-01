@@ -16,11 +16,13 @@ namespace Anaximander.Linq.Tests
         }
 
         [Fact]
-        public void GivenEmptyCollection_ThrowsInvalidOperationException()
+        public void GivenEmptyCollection_ReturnsEmptyCollection()
         {
             IEnumerable<int> collection = new List<int>();
 
-            Assert.Throws<InvalidOperationException>(() => collection.IndexOfLocalMaxima().ToList());
+            var result = collection.IndexOfLocalMaxima().ToList();
+
+            Assert.Empty(result);
         }
 
         [Fact]

@@ -16,11 +16,29 @@ namespace Anaximander.Linq.Tests
         }
 
         [Fact]
-        public void GivenEmptyCollection_ThrowsInvalidOperationException()
+        public void GivenZeroCombinationSize_ThrowsArgumentOutOfRangeException()
+        {
+            var collection = new[] { 1, 2, 3 };
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => collection.Combinations(0, CombinationsGenerationMode.AllowDuplicates));
+        }
+
+        [Fact]
+        public void GivenNegativeCombinationSize_ThrowsArgumentOutOfRangeException()
+        {
+            var collection = new[] { 1, 2, 3 };
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => collection.Combinations(-1, CombinationsGenerationMode.AllowDuplicates));
+        }
+
+        [Fact]
+        public void GivenEmptyCollection_ReturnsEmptyCollection()
         {
             IEnumerable<object> collection = new List<object>();
 
-            Assert.Throws<InvalidOperationException>(() => collection.Combinations(1, CombinationsGenerationMode.AllowDuplicates));
+            var result = collection.Combinations(1, CombinationsGenerationMode.AllowDuplicates);
+
+            Assert.Empty(result);
         }
 
         [Fact]
@@ -100,11 +118,23 @@ namespace Anaximander.Linq.Tests
         }
 
         [Fact]
-        public void GivenCombinationSizeLargerThanSource_InDistinctMode_ThrowsError()
+        public void GivenCombinationSizeLargerThanSource_InDistinctMode_ReturnsEmptySet()
         {
             IEnumerable<int> collection = new[] { 1, 2 };
 
-            Assert.Throws<InvalidOperationException>(() => collection.Combinations(3, CombinationsGenerationMode.Distinct));
+            var result = collection.Combinations(3, CombinationsGenerationMode.Distinct);
+
+            Assert.Empty(result);
+        }
+
+        [Fact]
+        public void GivenCombinationSizeLargerThanSourceAndSourceIsSingleElement_InDistinctMode_ReturnsEmptySet()
+        {
+            IEnumerable<int> collection = new[] { 1 };
+
+            var result = collection.Combinations(3, CombinationsGenerationMode.Distinct);
+
+            Assert.Empty(result);
         }
 
         [Fact]

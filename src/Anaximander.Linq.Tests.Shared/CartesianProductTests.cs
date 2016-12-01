@@ -16,11 +16,13 @@ namespace Anaximander.Linq.Tests
         }
 
         [Fact]
-        public void GivenEmptyOuterCollection_ThrowsInvalidOperationException()
+        public void GivenEmptyOuterCollection_ReturnsEmptyCollection()
         {
             var collection = new List<List<object>>();
 
-            Assert.Throws<InvalidOperationException>(() => collection.CartesianProduct());
+            var result = collection.CartesianProduct();
+
+            Assert.Empty(result);
         }
 
         [Fact]
