@@ -2,11 +2,17 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Anaximander.Linq</id>
-    <version>$version$</version>
+    <version>1.4.2</version>
+    <title>Anaximander.Linq</title>
     <authors>anaximander</authors>
+    <owners>anaximander</owners>
     <licenseUrl>http://apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
+    <projectUrl>https://github.com/anaximander23/Anaximander.Linq/</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Useful LINQ extension methods and utility classes for digging deeper into data.</description>
+    <summary>Useful LINQ extension methods and utility classes for digging deeper into data.</summary>
+    <copyright>anaximander 2016</copyright>
+    <tags>linq</tags>
   </metadata>
   <files>
     <file src="Anaximander.Linq.DotNet450\bin\Release\Anaximander.Linq.dll" target="lib\net40\Anaximander.Linq.dll" />
