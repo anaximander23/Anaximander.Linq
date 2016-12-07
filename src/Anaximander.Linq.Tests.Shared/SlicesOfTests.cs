@@ -170,13 +170,13 @@ namespace Anaximander.Linq.Tests
         [Fact]
         public void GivenValidCollection_SlicedOutputIsEnumerable()
         {
-            var collection = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
+            var collection = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var expectedSlices = new[]
             {
                 new[] { 1 ,2, 3 },
                 new[] { 4, 5, 6 },
                 new[] { 7, 8, 9 },
-                new[] { 0 }
+                new[] { 10 }
             };
 
             var resultSlices = collection.SlicesOf(3)
