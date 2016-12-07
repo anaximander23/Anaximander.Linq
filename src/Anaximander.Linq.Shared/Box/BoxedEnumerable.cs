@@ -22,35 +22,28 @@ namespace Anaximander.Linq
 
         private IEnumerable<IEnumerable<T>> GetBoxes()
         {
+            if (!_source.Any())
+            {
+                yield break;
+            }
+
             using (IEnumerator<IEnumerable<T>> windowEnumerator = _source.Window(2).GetEnumerator())
             {
-                List<T> buffer = null;
+                var buffer = new List<T>();
+                var started = false;
                 var endReached = false;
 
                 do
                 {
                     endReached = !windowEnumerator.MoveNext();
 
-                    if (buffer == null)
+                    if (endReached && !started)
                     {
-                        buffer = new List<T>();
-                    }
-
-                    T current = default(T);
-
-                    if (windowEnumerator.Current == null)
-                    {
+                        yield return _source;
                         yield break;
                     }
 
-                    if (windowEnumerator.Current.Count() == 1)
-                    {
-                        buffer.Add(current);
-                        yield return buffer;
-                        yield break;
-                    }
-
-                    current = windowEnumerator.Current.First();
+                    T current = windowEnumerator.Current.First();
                     buffer.Add(current);
 
                     T next = windowEnumerator.Current.Last();
@@ -60,6 +53,8 @@ namespace Anaximander.Linq
                         yield return buffer;
                         buffer = new List<T>();
                     }
+
+                    started = true;
                 } while (!endReached);
 
                 yield return buffer;

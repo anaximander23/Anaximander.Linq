@@ -28,7 +28,7 @@ namespace Anaximander.Linq.Tests
         [Fact]
         public void GivenSingleElement_ReturnsSourceCollectionAsOnlyElement()
         {
-            var collection = new[] { 0 };
+            var collection = new[] { 3 };
 
             int[][] result = collection.BoxWhile((a, b) => true)
                 .Select(x => x.ToArray())

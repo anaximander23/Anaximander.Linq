@@ -87,7 +87,7 @@ namespace Anaximander.Linq.Tests
         [Fact]
         public void GivenCollectionSizeGreaterThanSliceSize_ReturnsRemainderOfCorrectSize()
         {
-            var collection = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
+            var collection = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var expectedSlices = new[]
             {
                 new[] { 1, 2, 3 },
@@ -95,7 +95,7 @@ namespace Anaximander.Linq.Tests
                 new[] { 7, 8, 9 }
             };
 
-            var expectedRemainder = new[] { 0 };
+            var expectedRemainder = new[] { 10 };
 
             var result = collection.Slices(3);
 
