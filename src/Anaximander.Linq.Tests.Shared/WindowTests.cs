@@ -85,12 +85,27 @@ namespace Anaximander.Linq.Tests
             Assert.Equal(expected, actual);
         }
 
-        [Fact(Skip = "in progress")]
-        public void WhenCollectionSizeIsSmallerThanWindowSize_ThrowsInvalidOperationException()
+        [Fact]
+        public void WhenCollectionSizeIsSmallerThanWindowSize_ReturnsEmptySet()
         {
             var collection = new[] { 1, 2, 3 };
 
-            Assert.Throws<InvalidOperationException>(() => collection.Window(4).ToList());
+            var result = collection.Window(4);
+
+            Assert.Empty(result);
+        }
+
+        [Fact]
+        public void WhenCollectionSizeIsEqualToWindowSize_ReturnsSingleWindow()
+        {
+            var collection = new[] { 1, 2, 3 };
+            var expected = new[] { new[] { 1, 2, 3 } };
+
+            var result = collection.Window(3)
+                .Select(x => x.ToArray())
+                .ToArray();
+
+            Assert.Equal(expected, result);
         }
     }
 }

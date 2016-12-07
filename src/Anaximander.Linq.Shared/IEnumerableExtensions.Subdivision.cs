@@ -35,9 +35,16 @@ namespace Anaximander.Linq
                     {
                         buffer.Add(enumerator.Current);
                     }
+                    else
+                    {
+                        break;
+                    }
                 }
 
-                yield return buffer;
+                if (buffer.Count == windowSize)
+                {
+                    yield return buffer;
+                }
 
                 while (enumerator.MoveNext())
                 {
