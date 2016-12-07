@@ -101,47 +101,55 @@ namespace Anaximander.Linq
                 yield break;
             }
 
-            using (var windows = source
-                .Select((x, i) => new ComparableItem<TSource>(i, x, comparison(x)))
-                .Window(3)
-                .Select(x => x.ToList())
-                .GetEnumerator())
-            {
-                if (windows.MoveNext())
-                {
-                    var front = windows.Current;
+            var comparableSource = source.Select((x, i) => new ComparableItem<TSource>(i, x, comparison(x)));
 
-                    Func<IEnumerable<ComparableItem<TSource>>, IOrderedEnumerable<ComparableItem<TSource>>> order = x =>
+            Func<IEnumerable<ComparableItem<TSource>>, IOrderedEnumerable<ComparableItem<TSource>>> order = x =>
                     (findMaxima
                         ? x.OrderByDescending(o => o.Value)
                         : x.OrderBy(o => o.Value));
 
-                    if (order(front).First().Index == 0)
+            // Not actually a multiple enumeration:
+            // Iff we can't start enumerating it this way, we enumerate it once the other way
+            // ReSharper disable once PossibleMultipleEnumeration
+            using (var windows = comparableSource
+                .Window(3)
+                .Select(x => x.ToList())
+                .GetEnumerator())
+            {
+                if (!windows.MoveNext())
+                {
+                    // ReSharper disable once PossibleMultipleEnumeration
+                    yield return order(comparableSource).First();
+                    yield break;
+                }
+
+                var front = windows.Current;
+
+                if (order(front).First().Index == 0)
+                {
+                    yield return front.First();
+                }
+
+                var back = front;
+                while (windows.MoveNext())
+                {
+                    back = windows.Current;
+
+                    Func<int, bool> check = x => (findMaxima ? x > 0 : x < 0);
+
+                    if (back.Count == 3)
                     {
-                        yield return front.First();
-                    }
-
-                    var back = front;
-                    while (windows.MoveNext())
-                    {
-                        back = windows.Current;
-
-                        Func<int, bool> check = x => (findMaxima ? x > 0 : x < 0);
-
-                        if (back.Count == 3)
+                        if (check(back[1].Value.CompareTo(back[0].Value)) && check(back[1].Value.CompareTo(back[2].Value)))
                         {
-                            if (check(back[1].Value.CompareTo(back[0].Value)) && check(back[1].Value.CompareTo(back[2].Value)))
-                            {
-                                yield return back[1];
-                            }
+                            yield return back[1];
                         }
                     }
+                }
 
-                    var backLargest = order(back).First();
-                    if ((backLargest.Index != 0) && (backLargest.Index == back.Max(x => x.Index)))
-                    {
-                        yield return back.Last();
-                    }
+                var backLargest = order(back).First();
+                if ((backLargest.Index != 0) && (backLargest.Index == back.Max(x => x.Index)))
+                {
+                    yield return back.Last();
                 }
             }
         }
