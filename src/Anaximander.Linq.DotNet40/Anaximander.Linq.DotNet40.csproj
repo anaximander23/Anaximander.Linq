@@ -7,8 +7,8 @@
     <ProjectGuid>{28944783-3C09-4F22-907F-3520491D8B70}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Anaximander.Linq.DotNet40</RootNamespace>
-    <AssemblyName>Anaximander.Linq.DotNet40</AssemblyName>
+    <RootNamespace>Anaximander.Linq</RootNamespace>
+    <AssemblyName>Anaximander.Linq</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
