@@ -20,11 +20,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq.DotNet450"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq.DotNet450.Tests", "Anaximander.Linq.DotNet450.Tests\Anaximander.Linq.DotNet450.Tests.csproj", "{0A7ABDE9-BC1D-486A-97CF-9C1418581916}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq.DotNet40", "Anaximander.Linq.DotNet40\Anaximander.Linq.DotNet40.csproj", "{28944783-3C09-4F22-907F-3520491D8B70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq.DotNet40.Tests", "Anaximander.Linq.DotNet40.Tests\Anaximander.Linq.DotNet40.Tests.csproj", "{762B00EB-4994-43C5-A300-CA2E87A44487}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{0a7abde9-bc1d-486a-97cf-9c1418581916}*SharedItemsImports = 4
 		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{1ce07c75-f478-4b67-add4-bf352a2e4796}*SharedItemsImports = 13
+		Anaximander.Linq.Shared\Anaximander.Linq.Shared.projitems*{28944783-3c09-4f22-907f-3520491d8b70}*SharedItemsImports = 4
 		Anaximander.Linq.Shared\Anaximander.Linq.Shared.projitems*{4b24613b-663d-461c-8b70-aaa901b59f65}*SharedItemsImports = 4
+		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{762b00eb-4994-43c5-a300-ca2e87a44487}*SharedItemsImports = 4
 		Anaximander.Linq.Shared\Anaximander.Linq.Shared.projitems*{96e903e6-22a0-4c12-8807-c7088eefd985}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +46,14 @@ Global
 		{0A7ABDE9-BC1D-486A-97CF-9C1418581916}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A7ABDE9-BC1D-486A-97CF-9C1418581916}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A7ABDE9-BC1D-486A-97CF-9C1418581916}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28944783-3C09-4F22-907F-3520491D8B70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28944783-3C09-4F22-907F-3520491D8B70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28944783-3C09-4F22-907F-3520491D8B70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28944783-3C09-4F22-907F-3520491D8B70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{762B00EB-4994-43C5-A300-CA2E87A44487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{762B00EB-4994-43C5-A300-CA2E87A44487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{762B00EB-4994-43C5-A300-CA2E87A44487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{762B00EB-4994-43C5-A300-CA2E87A44487}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,5 +63,7 @@ Global
 		{1CE07C75-F478-4B67-ADD4-BF352A2E4796} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
 		{4B24613B-663D-461C-8B70-AAA901B59F65} = {58A99285-4C92-4FA1-AE6A-9E5B8F87E743}
 		{0A7ABDE9-BC1D-486A-97CF-9C1418581916} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
+		{28944783-3C09-4F22-907F-3520491D8B70} = {58A99285-4C92-4FA1-AE6A-9E5B8F87E743}
+		{762B00EB-4994-43C5-A300-CA2E87A44487} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
 	EndGlobalSection
 EndGlobal
