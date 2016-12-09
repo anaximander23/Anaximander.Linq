@@ -15,10 +15,10 @@
     <tags>linq</tags>
   </metadata>
   <files>
-    <file src="Anaximander.Linq.DotNet450\bin\Release\Anaximander.Linq.dll" target="lib\net45\Anaximander.Linq.dll" />
-    <file src="Anaximander.Linq.DotNet450\bin\Release\Anaximander.Linq.xml" target="lib\net45\Anaximander.Linq.xml" />
+    <file src="Anaximander.Linq.DotNet4.5\bin\Release\Anaximander.Linq.dll" target="lib\net45\Anaximander.Linq.dll" />
+    <file src="Anaximander.Linq.DotNet4.5\bin\Release\Anaximander.Linq.xml" target="lib\net45\Anaximander.Linq.xml" />
     
-    <file src="Anaximander.Linq.DotNet40\bin\Release\Anaximander.Linq.dll" target="lib\net40\Anaximander.Linq.dll" />
-    <file src="Anaximander.Linq.DotNet40\bin\Release\Anaximander.Linq.xml" target="lib\net40\Anaximander.Linq.xml" />
+    <file src="Anaximander.Linq.DotNet4.0\bin\Release\Anaximander.Linq.dll" target="lib\net40\Anaximander.Linq.dll" />
+    <file src="Anaximander.Linq.DotNet4.0\bin\Release\Anaximander.Linq.xml" target="lib\net40\Anaximander.Linq.xml" />
   </files>
 </package>

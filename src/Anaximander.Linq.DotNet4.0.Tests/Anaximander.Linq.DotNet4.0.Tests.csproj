@@ -47,13 +47,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Anaximander.Linq.DotNet40\Anaximander.Linq.DotNet40.csproj">
-      <Project>{28944783-3c09-4f22-907f-3520491d8b70}</Project>
-      <Name>Anaximander.Linq.DotNet40</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Anaximander.Linq.DotNet4.0\Anaximander.Linq.DotNet4.0.csproj">
+      <Project>{28944783-3c09-4f22-907f-3520491d8b70}</Project>
+      <Name>Anaximander.Linq.DotNet4.0</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
