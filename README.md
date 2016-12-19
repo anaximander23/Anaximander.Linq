@@ -21,9 +21,9 @@ Generates the [Cartesian product](https://en.wikipedia.org/wiki/Cartesian_produc
 
 Generates all combinations of a certain size from a set of source items. For example:
 
-    var pairs = items.Combinations(2, CombinationsGenerationMode.Distinct);
+    var pairs = items.Combinations(2, CombinationsGenerationMode.DistinctOrderInsensitive);
 
-The above code will find all the ways that the source set can be arranged into pairs. Note the `CombinationsGenerationMode` parameter; this allows the user to specify whether each source item can be used only once, or multiple times. For example, with a source collection of `{ 1, 2, 3 }`, in `Distinct` mode, the pair `{ 1, 1 }` is not valid, while in `AllowDuplicates` mode this combination is allowed.
+The above code will find all the ways that the source set can be arranged into pairs. Note the `CombinationsGenerationMode` parameter; this allows the user to specify whether each source item can be used only once, or multiple times, and whether a re-ordering of the same elements is considered a new combination. For example, with a source collection of `{ 1, 2, 3 }`, in `Distinct*` mode, the pair `{ 1, 1 }` is not valid, while in `AllowDuplicates*` mode this combination is allowed. In `*OrderSensitive` mode, `{ 1, 2 }` is considered to be a different combination to `{ 2, 1 }`; in `*OrderInsensitive` mode they are considered to be the same. 
 
 ### Minima and Maxima
 

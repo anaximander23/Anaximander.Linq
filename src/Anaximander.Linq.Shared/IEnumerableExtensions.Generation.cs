@@ -60,7 +60,7 @@ namespace Anaximander.Linq
         /// <param name="combinationSize">The number of items per result set</param>
         /// <param name="mode">The desired mode: whether to use each item from the source set only once, or allow re-use. (Note that Distinct mode requires a <paramref name="combinationSize"/> equal to or greater than the source collection length.)</param>
         /// <returns></returns>
-        public static IEnumerable<IEnumerable<T>> Combinations<T>(this IEnumerable<T> source, int combinationSize, CombinationsGenerationMode mode)
+        public static IEnumerable<IEnumerable<T>> Combinations<T>(this IEnumerable<T> source, int combinationSize, CombinationsGenerationMode mode = CombinationsGenerationMode.DistinctOrderInsensitive)
         {
             if (combinationSize < 1)
             {
@@ -84,7 +84,10 @@ namespace Anaximander.Linq
 
             IEnumerable<T> sourceList = source as IList<T> ?? source.ToList();
 
-            if ((mode == CombinationsGenerationMode.Distinct) && (combinationSize > sourceList.Count()))
+            var distinctModes = new[] { CombinationsGenerationMode.DistinctOrderSensitive, CombinationsGenerationMode.DistinctOrderInsensitive };
+            var orderSensitiveModes = new[] { CombinationsGenerationMode.AllowDuplicatesOrderSensitive, CombinationsGenerationMode.DistinctOrderSensitive };
+
+            if (distinctModes.Contains(mode) && (combinationSize > sourceList.Count()))
             {
                 return new List<IEnumerable<T>>();
             }
@@ -104,11 +107,12 @@ namespace Anaximander.Linq
 
             return indexedSource
                 .SelectMany(x => indexedSource
-                    .OrderBy(y => x.Index != y.Index)
-                    .Skip(mode == CombinationsGenerationMode.Distinct ? 1 : 0)
-                    .OrderBy(y => y.Index)
-                    .GenerateCombinations(combinationSize - 1, mode)
-                    .Select(y => new[] { x }.Concat(y).Select(z => z.Item))
+                        .OrderBy(y => x.Index != y.Index)
+                        .Skip(distinctModes.Contains(mode) ? 1 : 0)
+                        .OrderBy(y => y.Index)
+                        .Skip(orderSensitiveModes.Contains(mode) ? 0 : x.Index)
+                        .GenerateCombinations(combinationSize - 1, mode)
+                        .Select(y => new[] { x }.Concat(y).Select(z => z.Item))
                 );
         }
     }
@@ -119,13 +123,23 @@ namespace Anaximander.Linq
     public enum CombinationsGenerationMode
     {
         /// <summary>
-        /// Use each source item only once. Note: Requires combinationSize to be equal to or greater than the source collection size.
+        /// Use each source item only once, treating a different order of the same elements as a new combination. Note: Requires combinationSize to be equal to or greater than the source collection size.
         /// </summary>
-        Distinct,
+        DistinctOrderSensitive,
 
         /// <summary>
-        /// Allow source items to be used multiple times.
+        /// Use each source item only once, treating a different order of the same elements as the same combination. Note: Requires combinationSize to be equal to or greater than the source collection size.
         /// </summary>
-        AllowDuplicates
+        DistinctOrderInsensitive,
+
+        /// <summary>
+        /// Allow source items to be used multiple times, treating a different order of the same elements as a new combination.
+        /// </summary>
+        AllowDuplicatesOrderSensitive,
+
+        /// <summary>
+        /// Allow source items to be used multiple times, treating a different order of the same elements as the same combination.
+        /// </summary>
+        AllowDuplicatesOrderInsensitive,
     }
 }

@@ -12,7 +12,7 @@ namespace Anaximander.Linq.Tests
         {
             IEnumerable<object> collection = null;
 
-            Assert.Throws<ArgumentNullException>(() => collection.Combinations(1, CombinationsGenerationMode.AllowDuplicates));
+            Assert.Throws<ArgumentNullException>(() => collection.Combinations(1));
         }
 
         [Fact]
@@ -20,7 +20,7 @@ namespace Anaximander.Linq.Tests
         {
             var collection = new[] { 1, 2, 3 };
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => collection.Combinations(0, CombinationsGenerationMode.AllowDuplicates));
+            Assert.Throws<ArgumentOutOfRangeException>(() => collection.Combinations(0));
         }
 
         [Fact]
@@ -28,7 +28,7 @@ namespace Anaximander.Linq.Tests
         {
             var collection = new[] { 1, 2, 3 };
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => collection.Combinations(-1, CombinationsGenerationMode.AllowDuplicates));
+            Assert.Throws<ArgumentOutOfRangeException>(() => collection.Combinations(-1));
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace Anaximander.Linq.Tests
         {
             IEnumerable<object> collection = new List<object>();
 
-            var result = collection.Combinations(1, CombinationsGenerationMode.AllowDuplicates);
+            var result = collection.Combinations(1);
 
             Assert.Empty(result);
         }
@@ -47,7 +47,7 @@ namespace Anaximander.Linq.Tests
             IEnumerable<int> collection = new[] { 1 };
             var expected = new[] { new[] { 1 } };
 
-            var result = collection.Combinations(1, CombinationsGenerationMode.AllowDuplicates);
+            var result = collection.Combinations(1, mode: CombinationsGenerationMode.AllowDuplicatesOrderSensitive);
 
             Assert.Equal(expected, result);
         }
@@ -65,7 +65,7 @@ namespace Anaximander.Linq.Tests
                 new[] { 5 },
             };
 
-            var result = collection.Combinations(1, CombinationsGenerationMode.AllowDuplicates)
+            var result = collection.Combinations(1, mode: CombinationsGenerationMode.AllowDuplicatesOrderSensitive)
                 .Select(x => x.ToArray())
                 .ToArray();
 
@@ -86,7 +86,25 @@ namespace Anaximander.Linq.Tests
                 new[] { 3, 2 }
             };
 
-            var result = collection.Combinations(2, CombinationsGenerationMode.Distinct)
+            var result = collection.Combinations(2, mode: CombinationsGenerationMode.DistinctOrderSensitive)
+                .Select(x => x.ToArray())
+                .ToArray();
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void GivenValidCollection_ReturnsCombinations_DistinctOrderInsensitive()
+        {
+            IEnumerable<int> collection = new[] { 1, 2, 3 };
+            var expected = new[]
+            {
+                new[] { 1, 2 },
+                new[] { 1, 3 },
+                new[] { 2, 3 },
+            };
+
+            var result = collection.Combinations(2, mode: CombinationsGenerationMode.DistinctOrderInsensitive)
                 .Select(x => x.ToArray())
                 .ToArray();
 
@@ -110,7 +128,7 @@ namespace Anaximander.Linq.Tests
                 new[] { 3, 3 }
             };
 
-            var result = collection.Combinations(2, CombinationsGenerationMode.AllowDuplicates)
+            var result = collection.Combinations(2, mode: CombinationsGenerationMode.AllowDuplicatesOrderSensitive)
                 .Select(x => x.ToArray())
                 .ToArray();
 
@@ -122,7 +140,7 @@ namespace Anaximander.Linq.Tests
         {
             IEnumerable<int> collection = new[] { 1, 2 };
 
-            var result = collection.Combinations(3, CombinationsGenerationMode.Distinct);
+            var result = collection.Combinations(3, mode: CombinationsGenerationMode.DistinctOrderSensitive);
 
             Assert.Empty(result);
         }
@@ -132,7 +150,7 @@ namespace Anaximander.Linq.Tests
         {
             IEnumerable<int> collection = new[] { 1 };
 
-            var result = collection.Combinations(3, CombinationsGenerationMode.Distinct);
+            var result = collection.Combinations(3, mode: CombinationsGenerationMode.DistinctOrderSensitive);
 
             Assert.Empty(result);
         }
@@ -153,7 +171,7 @@ namespace Anaximander.Linq.Tests
                 new[] { 2, 2, 2 }
             };
 
-            var result = collection.Combinations(3, CombinationsGenerationMode.AllowDuplicates)
+            var result = collection.Combinations(3, mode: CombinationsGenerationMode.AllowDuplicatesOrderSensitive)
                 .Select(x => x.ToArray())
                 .ToArray();
 
