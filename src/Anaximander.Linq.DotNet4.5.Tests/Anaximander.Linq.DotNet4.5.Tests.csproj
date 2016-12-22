@@ -8,8 +8,8 @@
     <ProjectGuid>{0A7ABDE9-BC1D-486A-97CF-9C1418581916}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Anaximander.Linq.Tests</RootNamespace>
-    <AssemblyName>Anaximander.Linq.Tests</AssemblyName>
+    <RootNamespace>Anaximander.Linq.DotNet4_5.Tests</RootNamespace>
+    <AssemblyName>Anaximander.Linq.DotNet4.5.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

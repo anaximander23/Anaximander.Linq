@@ -7,8 +7,8 @@
     <ProjectGuid>{762B00EB-4994-43C5-A300-CA2E87A44487}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Anaximander.Linq.DotNet40.Tests</RootNamespace>
-    <AssemblyName>Anaximander.Linq.DotNet40.Tests</AssemblyName>
+    <RootNamespace>Anaximander.Linq.DotNet4_0.Tests</RootNamespace>
+    <AssemblyName>Anaximander.Linq.DotNet4.0.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

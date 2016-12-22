@@ -39,18 +39,19 @@ namespace Anaximander.Linq
         {
             IEnumerable<T> sourceList = source as IList<T> ?? source.ToList();
 
-            if (sourceList.Count() == 1)
+            var sourceCount = sourceList.Count();
+
+            if (sourceCount == 0)
+            {
+                return Enumerable.Empty<IEnumerable<T>>();
+            }
+
+            if (sourceCount == 1)
             {
                 return new[] { sourceList };
             }
 
-            return sourceList
-                .SelectMany(x => sourceList
-                    .OrderBy(y => !x.Equals(y))
-                    .Skip(1)
-                    .Permute()
-                    .Select(y => new[] { x }.Concat(y))
-                );
+            return GenerateCombinations(source, source.Count(), CombinationsGenerationMode.DistinctOrderSensitive);
         }
 
         /// <summary>
