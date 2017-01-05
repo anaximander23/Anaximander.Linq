@@ -40,7 +40,7 @@ namespace Anaximander.Linq.Tests
         [Fact]
         public void GivenUnchangingCondition_ReturnsSingleCollection()
         {
-            var collection = new[] { 0, 0, 0 };
+            var collection = new[] { 0, 1, 2 };
 
             int[][] result = collection.BoxWhile((a, b) => true)
                 .Select(x => x.ToArray())
@@ -52,10 +52,10 @@ namespace Anaximander.Linq.Tests
         [Fact]
         public void GivenSingleChangeInCondition_ReturnsTwoCollections()
         {
-            var collection = new[] { 0, 0, 1, 1 };
-            var expected = new[] { new[] { 0, 0 }, new[] { 1, 1 } };
+            var collection = new[] { 2, 4, 3, 6 };
+            var expected = new[] { new[] { 2, 4 }, new[] { 3, 6 } };
 
-            int[][] result = collection.BoxWhile((a, b) => a == b)
+            int[][] result = collection.BoxWhile((a, b) => b % a == 0)
                 .Select(x => x.ToArray())
                 .ToArray();
 
@@ -65,10 +65,10 @@ namespace Anaximander.Linq.Tests
         [Fact]
         public void GivenOddSizedCollection_ReturnsCorrectNumber()
         {
-            var collection = new[] { 0, 0, 1, 1, 1 };
-            var expected = new[] { new[] { 0, 0 }, new[] { 1, 1, 1 } };
+            var collection = new[] { 2, 4, 3, 6, 12 };
+            var expected = new[] { new[] { 2,  4}, new[] { 3, 6, 12 } };
 
-            int[][] result = collection.BoxWhile((a, b) => a == b)
+            int[][] result = collection.BoxWhile((a, b) => b % a == 0)
                 .Select(x => x.ToArray())
                 .ToArray();
 
@@ -78,10 +78,10 @@ namespace Anaximander.Linq.Tests
         [Fact]
         public void GivenMultipleChangesInCondition_ReturnsMultipleCollections()
         {
-            var collection = new[] { 0, 0, 1, 1, 0, 0 };
-            var expected = new[] { new[] { 0, 0 }, new[] { 1, 1 }, new[] { 0, 0 } };
+            var collection = new[] { 2, 4, 3, 6, 5, 10 };
+            var expected = new[] { new[] { 2, 4 }, new[] { 3, 6 }, new[] { 5, 10 } };
 
-            int[][] result = collection.BoxWhile((a, b) => a == b)
+            int[][] result = collection.BoxWhile((a, b) => b % a == 0)
                 .Select(x => x.ToArray())
                 .ToArray();
 
