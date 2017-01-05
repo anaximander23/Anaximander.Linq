@@ -18,7 +18,7 @@ namespace Anaximander.Linq
 
         public IEnumerator<IEnumerable<T>> GetEnumerator() => GetBoxes().GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
 
         private IEnumerable<IEnumerable<T>> GetBoxes()
         {
@@ -26,36 +26,49 @@ namespace Anaximander.Linq
             {
                 yield break;
             }
-
+            
             using (IEnumerator<IEnumerable<T>> windowEnumerator = _source.Window(2).GetEnumerator())
             {
-                var buffer = new List<T>();
-                var started = false;
-                var endReached = false;
+                List<T> buffer = null;
+                bool endReached = !windowEnumerator.MoveNext();
 
-                do
+                if (endReached)
                 {
-                    endReached = !windowEnumerator.MoveNext();
+                    yield return _source;
+                    yield break;
+                }
 
-                    if (endReached && !started)
+                while (!endReached)
+                {
+                    T current = windowEnumerator.Current.First();
+                    if (buffer == null)
                     {
-                        yield return _source;
+                        buffer = new List<T> { current };
+                    }
+
+                    if (windowEnumerator.Current.Count() < 2)
+                    {
+                        yield return buffer;
                         yield break;
                     }
 
-                    T current = windowEnumerator.Current.First();
-                    buffer.Add(current);
-
                     T next = windowEnumerator.Current.Last();
 
-                    if (!_sameBoxWhile(current, next))
+                    if (!endReached)
                     {
-                        yield return buffer;
-                        buffer = new List<T>();
+                        if (_sameBoxWhile(current, next))
+                        {
+                            buffer.Add(next);
+                        }
+                        else
+                        {
+                            yield return buffer;
+                            buffer = new List<T> { next };
+                        }
                     }
 
-                    started = true;
-                } while (!endReached);
+                    endReached = !windowEnumerator.MoveNext();
+                }
 
                 yield return buffer;
             }
