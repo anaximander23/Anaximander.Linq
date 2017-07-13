@@ -18,9 +18,11 @@ namespace Anaximander.Linq
         /// <returns>A collection sorted to match the ordering collection, with missing items sorted to the end.</returns>
         public static IOrderedEnumerable<T> OrderToMatch<T, TKey>(this IEnumerable<T> source, Func<T, TKey> sortKeySelector, IEnumerable<TKey> ordering)
         {
-            TKey[] orderArray = ordering.ToArray();
+            var orderLookup = ordering
+                .Select((x, i) => new { key = x, index = i })
+                .ToDictionary(k => k.key, v => v.index);
 
-            if (!orderArray.Any())
+            if (!orderLookup.Any())
             {
                 throw new ArgumentException("Ordering collection cannot be empty.", nameof(ordering));
             }
@@ -29,11 +31,14 @@ namespace Anaximander.Linq
 
             return sourceArray
                 .OrderBy(x =>
+                {
+                    int index;
+                    if (orderLookup.TryGetValue(sortKeySelector(x), out index))
                     {
-                        int index = Array.IndexOf(orderArray, sortKeySelector(x));
-
-                        return (index >= 0 ? index : Int32.MaxValue);
-                    })
+                        return index;
+                    }
+                    return Int32.MaxValue;
+                })
                 .ThenBy(x => Array.IndexOf(sourceArray, x));
         }
     }
