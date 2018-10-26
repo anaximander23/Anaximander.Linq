@@ -124,12 +124,12 @@ namespace Anaximander.Linq
     public enum CombinationsGenerationMode
     {
         /// <summary>
-        /// Use each source item only once, treating a different order of the same elements as a new combination. Note: Requires combinationSize to be equal to or greater than the source collection size.
+        /// Use each source item only once, treating a different order of the same elements as a new combination. Note: Requires source collection size to be equal to or greater than combinationSize.
         /// </summary>
         DistinctOrderSensitive,
 
         /// <summary>
-        /// Use each source item only once, treating a different order of the same elements as the same combination. Note: Requires combinationSize to be equal to or greater than the source collection size.
+        /// Use each source item only once, treating a different order of the same elements as the same combination. Note: Requires source collection size to be equal to or greater than combinationSize.
         /// </summary>
         DistinctOrderInsensitive,
 
