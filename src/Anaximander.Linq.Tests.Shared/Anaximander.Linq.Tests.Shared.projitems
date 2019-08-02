@@ -9,7 +9,8 @@
     <Import_RootNamespace>Anaximander.Linq.Tests.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)BoxWhileTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BoxWhile_OneParameter_Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BoxWhile_TwoParameters_Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CartesianProductTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CombinationsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IndexOfLocalMaximaTests.cs" />

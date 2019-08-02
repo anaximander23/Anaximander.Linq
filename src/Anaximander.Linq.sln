@@ -24,9 +24,9 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Anaximander.Linq.Shared", "
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Anaximander.Linq.Tests.Shared", "Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.shproj", "{1CE07C75-F478-4B67-ADD4-BF352A2E4796}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq.DotNetStandard2.0", "Anaximander.Linq.DotNetStandard2.0\Anaximander.Linq.DotNetStandard2.0.csproj", "{B3266A26-B5EE-4C1F-8848-D72CA807C037}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anaximander.Linq.DotNetStandard2.0", "Anaximander.Linq.DotNetStandard2.0\Anaximander.Linq.DotNetStandard2.0.csproj", "{B3266A26-B5EE-4C1F-8848-D72CA807C037}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq.DotNetStandard2.0.Tests", "Anaximander.Linq.DotNetStandard2.0.Tests\Anaximander.Linq.DotNetStandard2.0.Tests.csproj", "{CBAD084F-39F1-4594-A8A6-AC0AA4E46E7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq.DotNetCore2.0.Tests", "Anaximander.Linq.DotNetCore2.0.Tests\Anaximander.Linq.DotNetCore2.0.Tests\Anaximander.Linq.DotNetCore2.0.Tests.csproj", "{42985873-D12B-4682-9963-CD42250516A0}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -62,10 +62,10 @@ Global
 		{B3266A26-B5EE-4C1F-8848-D72CA807C037}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3266A26-B5EE-4C1F-8848-D72CA807C037}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3266A26-B5EE-4C1F-8848-D72CA807C037}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CBAD084F-39F1-4594-A8A6-AC0AA4E46E7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CBAD084F-39F1-4594-A8A6-AC0AA4E46E7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CBAD084F-39F1-4594-A8A6-AC0AA4E46E7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CBAD084F-39F1-4594-A8A6-AC0AA4E46E7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42985873-D12B-4682-9963-CD42250516A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42985873-D12B-4682-9963-CD42250516A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42985873-D12B-4682-9963-CD42250516A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42985873-D12B-4682-9963-CD42250516A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,7 +78,7 @@ Global
 		{96E903E6-22A0-4C12-8807-C7088EEFD985} = {58A99285-4C92-4FA1-AE6A-9E5B8F87E743}
 		{1CE07C75-F478-4B67-ADD4-BF352A2E4796} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
 		{B3266A26-B5EE-4C1F-8848-D72CA807C037} = {58A99285-4C92-4FA1-AE6A-9E5B8F87E743}
-		{CBAD084F-39F1-4594-A8A6-AC0AA4E46E7F} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
+		{42985873-D12B-4682-9963-CD42250516A0} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {47AB341D-FFF4-4235-9618-08DA8636762D}
