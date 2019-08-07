@@ -7,6 +7,12 @@ namespace Anaximander.Linq
 {
     internal class BoxedEnumerable<T> : IBoxedEnumerable<T>
     {
+        public BoxedEnumerable(IEnumerable<T> source, Func<T, bool> sameBoxWhile)
+        {
+            _source = source;
+            _sameBoxWhile = (T current, T next) => sameBoxWhile(next);
+        }
+
         public BoxedEnumerable(IEnumerable<T> source, Func<T, T, bool> sameBoxWhile)
         {
             _source = source;
@@ -26,7 +32,7 @@ namespace Anaximander.Linq
             {
                 yield break;
             }
-            
+
             using (IEnumerator<IEnumerable<T>> windowEnumerator = _source.Window(2).GetEnumerator())
             {
                 List<T> buffer = null;
