@@ -1,6 +1,8 @@
 # Anaximander.Linq
 *Useful LINQ extension methods and utility classes for digging deeper into data.*
 
+[![NuGet Badge](https://buildstats.info/nuget/Anaximander.Linq)](https://www.nuget.org/packages/Anaximander.Linq/)
+
 This is a library of various methods and classes for inspecting, manipulating and projecting collections of objects in C#, assembled from a variety of things that I've found useful along the way. The package is intended to cover uses cases including combinatorics, statistics, and data analysis. 
 
 ## Features
