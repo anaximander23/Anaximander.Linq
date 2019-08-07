@@ -21,8 +21,8 @@ namespace Anaximander.Linq
 
             IEnumerable<IEnumerable<T>> emptyProduct = new IEnumerable<T>[] { Enumerable.Empty<T>() };
             return sequences.Aggregate(
-              emptyProduct,
-              (accumulator, sequence) =>
+                emptyProduct,
+                (accumulator, sequence) =>
                 from accseq in accumulator
                 from item in sequence
                 select accseq.Concat(new[] { item }))
@@ -99,48 +99,22 @@ namespace Anaximander.Linq
             }
 
             var indexedSource = sourceList
-               .Select((x, i) => new
-               {
-                   Item = x,
-                   Index = i
-               })
-               .ToList();
+                .Select((x, i) => new
+                {
+                    Item = x,
+                    Index = i
+                })
+                .ToList();
 
             return indexedSource
                 .SelectMany(x => indexedSource
-                        .OrderBy(y => x.Index != y.Index)
-                        .Skip(distinctModes.Contains(mode) ? 1 : 0)
-                        .OrderBy(y => y.Index)
-                        .Skip(orderSensitiveModes.Contains(mode) ? 0 : x.Index)
-                        .GenerateCombinations(combinationSize - 1, mode)
-                        .Select(y => new[] { x }.Concat(y).Select(z => z.Item))
-                );
+                            .OrderBy(y => x.Index != y.Index)
+                            .Skip(distinctModes.Contains(mode) ? 1 : 0)
+                            .OrderBy(y => y.Index)
+                            .Skip(orderSensitiveModes.Contains(mode) ? 0 : x.Index)
+                            .GenerateCombinations(combinationSize - 1, mode)
+                            .Select(y => new[] { x }.Concat(y).Select(z => z.Item))
+                           );
         }
-    }
-
-    /// <summary>
-    /// How to handle duplication when generating combinations.
-    /// </summary>
-    public enum CombinationsGenerationMode
-    {
-        /// <summary>
-        /// Use each source item only once, treating a different order of the same elements as a new combination. Note: Requires source collection size to be equal to or greater than combinationSize.
-        /// </summary>
-        DistinctOrderSensitive,
-
-        /// <summary>
-        /// Use each source item only once, treating a different order of the same elements as the same combination. Note: Requires source collection size to be equal to or greater than combinationSize.
-        /// </summary>
-        DistinctOrderInsensitive,
-
-        /// <summary>
-        /// Allow source items to be used multiple times, treating a different order of the same elements as a new combination.
-        /// </summary>
-        AllowDuplicatesOrderSensitive,
-
-        /// <summary>
-        /// Allow source items to be used multiple times, treating a different order of the same elements as the same combination.
-        /// </summary>
-        AllowDuplicatesOrderInsensitive,
     }
 }
