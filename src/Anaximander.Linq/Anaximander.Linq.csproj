@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DocumentationFile>bin\Anaximander.Linq.xml</DocumentationFile>
-    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>bin\Release\Anaximander.Linq.xml</DocumentationFile>
+    <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
 
 </Project>
