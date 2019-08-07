@@ -17,9 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Anaximander.Linq.DotNetStandard2.0\Anaximander.Linq.DotNetStandard2.0.csproj" />
+    <ProjectReference Include="..\Anaximander.Linq.DotNetStandard2.0\Anaximander.Linq.DotNetStandard2.0.csproj" />
   </ItemGroup>
 
-  <Import Project="..\..\Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems" Label="Shared" />
+  <Import Project="..\Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems" Label="Shared" />
 
 </Project>
