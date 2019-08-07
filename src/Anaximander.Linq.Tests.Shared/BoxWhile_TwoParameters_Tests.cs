@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Anaximander.Linq.Tests
 {
-    public class BoxWhileTests
+    public class BoxWhile_TwoParameters_Tests
     {
         [Fact]
         public void GivenNullCollection_ThrowsArgumentNullException()
