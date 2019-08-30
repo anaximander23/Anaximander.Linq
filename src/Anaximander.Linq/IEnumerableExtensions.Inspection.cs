@@ -101,17 +101,14 @@ namespace Anaximander.Linq
                 yield break;
             }
 
-            var comparableSource = source.Select((x, i) => new ComparableItem<TSource>(i, x, comparison(x)));
+            IEnumerable<ComparableItem<TSource>> comparableSource = source.Select((x, i) => new ComparableItem<TSource>(i, x, comparison(x)));
 
-            Func<IEnumerable<ComparableItem<TSource>>, IOrderedEnumerable<ComparableItem<TSource>>> order = x =>
-                    (findMaxima
+            IOrderedEnumerable<ComparableItem<TSource>> order(IEnumerable<ComparableItem<TSource>> x) =>
+                    findMaxima
                         ? x.OrderByDescending(o => o.Value)
-                        : x.OrderBy(o => o.Value));
+                        : x.OrderBy(o => o.Value);
 
-            // Not actually a multiple enumeration:
-            // Iff we can't start enumerating it this way, we enumerate it once the other way
-            // ReSharper disable once PossibleMultipleEnumeration
-            using (var windows = comparableSource
+            using (IEnumerator<List<ComparableItem<TSource>>> windows = comparableSource
                 .Window(3)
                 .Select(x => x.ToList())
                 .GetEnumerator())
@@ -123,19 +120,22 @@ namespace Anaximander.Linq
                     yield break;
                 }
 
-                var front = windows.Current;
+                List<ComparableItem<TSource>> front = windows.Current;
 
                 if (order(front).First().Index == 0)
                 {
                     yield return front.First();
                 }
 
-                var back = front;
+                List<ComparableItem<TSource>> back = front;
                 while (windows.MoveNext())
                 {
                     back = windows.Current;
 
-                    Func<int, bool> check = x => (findMaxima ? x > 0 : x < 0);
+                    bool check(int x) =>
+                        findMaxima
+                            ? x > 0
+                            : x < 0;
 
                     if (back.Count == 3)
                     {
@@ -146,7 +146,7 @@ namespace Anaximander.Linq
                     }
                 }
 
-                var backLargest = order(back).First();
+                ComparableItem<TSource> backLargest = order(back).First();
                 if ((backLargest.Index != 0) && (backLargest.Index == back.Max(x => x.Index)))
                 {
                     yield return back.Last();

@@ -39,7 +39,7 @@ namespace Anaximander.Linq
         {
             IEnumerable<T> sourceList = source as IList<T> ?? source.ToList();
 
-            var sourceCount = sourceList.Count();
+            int sourceCount = sourceList.Count();
 
             if (sourceCount == 0)
             {
@@ -85,8 +85,8 @@ namespace Anaximander.Linq
 
             IEnumerable<T> sourceList = source as IList<T> ?? source.ToList();
 
-            var distinctModes = new[] { CombinationsGenerationMode.DistinctOrderSensitive, CombinationsGenerationMode.DistinctOrderInsensitive };
-            var orderSensitiveModes = new[] { CombinationsGenerationMode.AllowDuplicatesOrderSensitive, CombinationsGenerationMode.DistinctOrderSensitive };
+            CombinationsGenerationMode[] distinctModes = new[] { CombinationsGenerationMode.DistinctOrderSensitive, CombinationsGenerationMode.DistinctOrderInsensitive };
+            CombinationsGenerationMode[] orderSensitiveModes = new[] { CombinationsGenerationMode.AllowDuplicatesOrderSensitive, CombinationsGenerationMode.DistinctOrderSensitive };
 
             if (distinctModes.Contains(mode) && (combinationSize > sourceList.Count()))
             {

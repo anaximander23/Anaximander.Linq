@@ -25,11 +25,11 @@ namespace Anaximander.Linq
                 yield break;
             }
 
-            var buffer = new List<T>();
+            List<T> buffer = new List<T>();
 
             using (IEnumerator<T> enumerator = source.GetEnumerator())
             {
-                for (var i = 0; i < windowSize; i++)
+                for (int i = 0; i < windowSize; i++)
                 {
                     if (enumerator.MoveNext())
                     {
