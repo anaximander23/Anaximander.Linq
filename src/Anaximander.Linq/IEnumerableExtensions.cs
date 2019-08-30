@@ -18,7 +18,7 @@ namespace Anaximander.Linq
         /// <returns>A collection sorted to match the ordering collection, with missing items sorted to the end.</returns>
         public static IOrderedEnumerable<T> OrderToMatch<T, TKey>(this IEnumerable<T> source, Func<T, TKey> sortKeySelector, IEnumerable<TKey> ordering)
         {
-            var orderLookup = ordering
+            Dictionary<TKey, int> orderLookup = ordering
                 .Select((x, i) => new { key = x, index = i })
                 .ToDictionary(k => k.key, v => v.index);
 
@@ -32,8 +32,7 @@ namespace Anaximander.Linq
             return sourceArray
                 .OrderBy(x =>
                 {
-                    int index;
-                    if (orderLookup.TryGetValue(sortKeySelector(x), out index))
+                    if (orderLookup.TryGetValue(sortKeySelector(x), out int index))
                     {
                         return index;
                     }

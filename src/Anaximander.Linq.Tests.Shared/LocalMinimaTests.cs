@@ -33,7 +33,7 @@ namespace Anaximander.Linq.Tests
 
             List<int> result = collection.LocalMinima().ToList();
 
-            Assert.Equal(result.Count, 1);
+            Assert.Single(result);
             Assert.True(collection.SequenceEqual(result));
         }
 
