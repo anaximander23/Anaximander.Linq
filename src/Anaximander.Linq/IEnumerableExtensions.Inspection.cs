@@ -115,7 +115,6 @@ namespace Anaximander.Linq
             {
                 if (!windows.MoveNext())
                 {
-                    // ReSharper disable once PossibleMultipleEnumeration
                     yield return order(comparableSource).First();
                     yield break;
                 }
