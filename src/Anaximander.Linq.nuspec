@@ -6,7 +6,7 @@
     <title>Anaximander.Linq</title>
     <authors>anaximander</authors>
     <owners>anaximander</owners>
-    <licenseUrl>http://apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
+    <license type="expression">MIT</license>
     <projectUrl>https://github.com/anaximander23/Anaximander.Linq/</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Useful LINQ extension methods and utility classes for digging deeper into data.</description>
