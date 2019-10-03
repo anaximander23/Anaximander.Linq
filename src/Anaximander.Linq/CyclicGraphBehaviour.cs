@@ -8,7 +8,7 @@
         /// <summary>
         /// Throw an error if the structure contains cycles
         /// </summary>
-        Error,
+        Throw,
 
         /// <summary>
         /// Truncate a path when the cyclic reference is detected, and move on

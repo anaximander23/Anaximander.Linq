@@ -24,7 +24,7 @@ namespace Anaximander.Linq.TreeTraversal
         public static IEnumerable<IEnumerable<TElement>> GetTraversalPaths<TElement>(
             TElement root,
             Func<TElement, IEnumerable<TElement>> childrenSelector,
-            CyclicGraphBehaviour cyclicGraphBehaviour = CyclicGraphBehaviour.Error)
+            CyclicGraphBehaviour cyclicGraphBehaviour = CyclicGraphBehaviour.Throw)
         {
             Queue<PathBuilder<TElement>> pathBuilder = new Queue<PathBuilder<TElement>>();
             pathBuilder.Enqueue(new PathBuilder<TElement>(root));
@@ -42,7 +42,7 @@ namespace Anaximander.Linq.TreeTraversal
                             continue;
 
                         default:
-                        case CyclicGraphBehaviour.Error:
+                        case CyclicGraphBehaviour.Throw:
                             throw new CyclicGraphException();
                     }
                 }
