@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Anaximander.Linq.TreeTraversal
 {
     [Serializable]
-    internal class CyclicGraphException : Exception
+    public class CyclicGraphException : Exception
     {
         public CyclicGraphException()
             : base("The provided data structure contains cyclic references, which are not allowed.")
