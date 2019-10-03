@@ -8,5 +8,4 @@
     <DocumentationFile>bin\Release\Anaximander.Linq.xml</DocumentationFile>
     <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
-
 </Project>

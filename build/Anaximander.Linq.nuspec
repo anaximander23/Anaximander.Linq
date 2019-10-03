@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Anaximander.Linq</id>
+    <version>$version$</version>
+	<description>Useful LINQ extension methods and utility classes for digging deeper into data.</description>
+    <authors>anaximander</authors>
+    <repository type="git" url="https://github.com/anaximander23/Anaximander.Linq/" />
+    <license type="expression">MIT</license>
+    <tags>linq</tags>
+  </metadata>
+  <files>
+    <file src="..\src\Anaximander.Linq\bin\Release\net40\Anaximander.Linq.dll" target="lib\net40\Anaximander.Linq.dll" />
+    <file src="..\src\Anaximander.Linq\bin\Release\Anaximander.Linq.xml" target="lib\net40\Anaximander.Linq.xml" />
+    
+    <file src="..\src\Anaximander.Linq\bin\Release\net472\Anaximander.Linq.dll" target="lib\net472\Anaximander.Linq.dll" />
+    <file src="..\src\Anaximander.Linq\bin\Release\Anaximander.Linq.xml" target="lib\net472\Anaximander.Linq.xml" />
+    
+    <file src="..\src\Anaximander.Linq\bin\Release\netstandard2.0\Anaximander.Linq.dll" target="lib\netstandard2.0\Anaximander.Linq.dll" />
+    <file src="..\src\Anaximander.Linq\bin\Release\Anaximander.Linq.xml" target="lib\netstandard2.0\Anaximander.Linq.xml" />
+  </files>
+</package>

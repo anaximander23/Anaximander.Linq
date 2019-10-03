@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ShuffleTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SlicesOfTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SlicesTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TreeTraversalTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowTests.cs" />
   </ItemGroup>
 </Project>
