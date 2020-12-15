@@ -1,3 +1,10 @@
 mode: Mainline
 increment: Minor
-branches: {}
+major-version-bump-message: '\+semver:\s?(breaking|major)'
+minor-version-bump-message: '\+semver:\s?(feature|minor)'
+no-bump-message: '\+semver:\s?(none|skip)'
+assembly-versioning-scheme: MajorMinorPatch
+assembly-file-versioning-scheme: MajorMinorPatchTag
+legacy-semver-padding: 4
+build-metadata-padding: 4
+commits-since-version-source-padding: 4
