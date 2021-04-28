@@ -18,7 +18,7 @@ namespace Anaximander.Linq.Tests
         [Fact]
         public void GivenEmptyCollection_ReturnsEmptyCollection()
         {
-            var collection = new object[] { };
+            var collection = Array.Empty<object>();
 
             var result = collection.BoxWhile((a, b) => true).ToList();
 
