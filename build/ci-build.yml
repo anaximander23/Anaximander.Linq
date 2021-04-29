@@ -18,8 +18,20 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '5.x'
-  displayName: 'Use .NET 5'
+    version: '2.1.x'
+  displayName: 'Install .NET Core 2.1 SDK'
+
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '3.1.x'
+  displayName: 'Install .NET Core 3.1 SDK'
+
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '5.0.x'
+  displayName: 'Install .NET 5.0 SDK'
 
 - task: NuGetToolInstaller@1
   inputs:
@@ -27,12 +39,15 @@ steps:
     checkLatest: true
   displayName: 'Use NuGet tool v5.x'
 
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
     projects: |
-      src/**/*.csproj
-      tests/**/*.csproj
+      src/src/Anaximander.Linq/src/Anaximander.Linq.csproj
+      src/Anaximander.Linq.Tests.DotNetCore2.1/Anaximander.Linq.Tests.DotNetCore2.1.csproj
+      src/Anaximander.Linq.Tests.DotNetCore3.1/Anaximander.Linq.Tests.DotNetCore3.1.csproj
+      src/Anaximander.Linq.Tests.DotNet5.0/Anaximander.Linq.Tests.DotNet5.0.csproj
     feedsToUse: 'select'
     noCache: true
     verbosityRestore: 'Normal'
@@ -42,15 +57,20 @@ steps:
   inputs:
     command: 'build'
     projects: |
-      src/**/*.csproj
-      tests/**/*.csproj
+      src/src/Anaximander.Linq/src/Anaximander.Linq.csproj
+      src/Anaximander.Linq.Tests.DotNetCore2.1/Anaximander.Linq.Tests.DotNetCore2.1.csproj
+      src/Anaximander.Linq.Tests.DotNetCore3.1/Anaximander.Linq.Tests.DotNetCore3.1.csproj
+      src/Anaximander.Linq.Tests.DotNet5.0/Anaximander.Linq.Tests.DotNet5.0.csproj
     arguments: '--nologo --no-restore -c $(build-configuration)'
   displayName: 'Build'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    projects: 'tests/**/Anaximander.**Tests.csproj'
+    projects: 
+      src/Anaximander.Linq.Tests.DotNetCore2.1/Anaximander.Linq.Tests.DotNetCore2.1.csproj
+      src/Anaximander.Linq.Tests.DotNetCore3.1/Anaximander.Linq.Tests.DotNetCore3.1.csproj
+      src/Anaximander.Linq.Tests.DotNet5.0/Anaximander.Linq.Tests.DotNet5.0.csproj
     arguments: '--nologo --no-build -c $(build-configuration)'
   displayName: 'Test'
 
