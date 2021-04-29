@@ -65,7 +65,7 @@ namespace Anaximander.Linq.Tests
             Assert.Throws<CyclicGraphException>(() => TreeTraverser.GetTraversalPaths(tree, node => node.Children, CyclicGraphBehaviour.Throw).ToList());
         }
 
-        private NTreeNode GenerateTree()
+        private static NTreeNode GenerateTree()
         {
             return new NTreeNode
             {
@@ -150,7 +150,7 @@ namespace Anaximander.Linq.Tests
             };
         }
 
-        private NTreeNode GenerateTreeWithCycle()
+        private static NTreeNode GenerateTreeWithCycle()
         {
             NTreeNode tree = GenerateTree();
 
@@ -162,8 +162,8 @@ namespace Anaximander.Linq.Tests
 
             flat = flat.Distinct();
 
-            var loopFrom = flat.SingleOrDefault(n => n.Label == "K");
-            var loopTo = flat.SingleOrDefault(n => n.Label == "B");
+            NTreeNode loopFrom = flat.SingleOrDefault(n => n.Label == "K");
+            NTreeNode loopTo = flat.SingleOrDefault(n => n.Label == "B");
 
             loopFrom.Children = new[] { loopTo };
 
