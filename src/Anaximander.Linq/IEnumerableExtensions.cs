@@ -40,5 +40,23 @@ namespace Anaximander.Linq
                 })
                 .ThenBy(x => Array.IndexOf(sourceArray, x));
         }
+
+        /// <summary>
+        /// Filters a collection to only those values that have unique key values according to a key selector.
+        /// </summary>
+        /// <param name="source">A collection of items to be filtered.</param>
+        /// <param name="keySelector">A func to derive a key on which to filter the items in the source collection.</param>
+        /// <returns>A collection containing the first item from the source collection to return each unique value of key.</returns>
+        public static IEnumerable<T> DistinctBy<T, TKey>(this IEnumerable<T> source, Func<T, TKey> keySelector)
+        {
+            HashSet<TKey> keys = new HashSet<TKey>();
+            foreach (T element in source)
+            {
+                if (keys.Add(keySelector(element)))
+                {
+                    yield return element;
+                }
+            }
+        }
     }
 }
