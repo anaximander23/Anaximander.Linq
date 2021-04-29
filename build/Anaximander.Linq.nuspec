@@ -10,11 +10,8 @@
     <tags>linq</tags>
   </metadata>
   <files>
-    <file src="..\src\Anaximander.Linq\bin\Release\net472\Anaximander.Linq.dll" target="lib\net472\Anaximander.Linq.dll" />
-    <file src="..\src\Anaximander.Linq\bin\Release\Anaximander.Linq.xml" target="lib\net472\Anaximander.Linq.xml" />
-    
-    <file src="..\src\Anaximander.Linq\bin\Release\netstandard2.1\Anaximander.Linq.dll" target="lib\netstandard2.1\Anaximander.Linq.dll" />
-    <file src="..\src\Anaximander.Linq\bin\Release\Anaximander.Linq.xml" target="lib\netstandard2.1\Anaximander.Linq.xml" />
+    <file src="..\src\Anaximander.Linq\bin\Release\netstandard2.0\Anaximander.Linq.dll" target="lib\netstandard2.0\Anaximander.Linq.dll" />
+    <file src="..\src\Anaximander.Linq\bin\Release\Anaximander.Linq.xml" target="lib\netstandard2.0\Anaximander.Linq.xml" />
 	
 	<file src="..\src\Anaximander.Linq\bin\Release\net5.0\Anaximander.Linq.dll" target="lib\net5.0\Anaximander.Linq.dll" />
     <file src="..\src\Anaximander.Linq\bin\Release\Anaximander.Linq.xml" target="lib\net5.0\Anaximander.Linq.xml" />
