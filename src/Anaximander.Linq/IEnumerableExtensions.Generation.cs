@@ -80,7 +80,7 @@ namespace Anaximander.Linq
 
             if (combinationSize == 0)
             {
-                return new[] { new T[] { } };
+                return new[] { Array.Empty<T>() };
             }
 
             IEnumerable<T> sourceList = source as IList<T> ?? source.ToList();

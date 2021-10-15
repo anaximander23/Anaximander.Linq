@@ -112,7 +112,7 @@ namespace Anaximander.Linq.Tests.Shared
             Assert.Empty(filtered);
         }
 
-        private IEnumerable<TestItem> GetSourceCollection(int count)
+        private static IEnumerable<TestItem> GetSourceCollection(int count)
         {
             return Enumerable.Range(0, count)
                 .Select(x => new TestItem(x))
