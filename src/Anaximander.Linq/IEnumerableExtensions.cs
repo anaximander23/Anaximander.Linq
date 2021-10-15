@@ -58,5 +58,35 @@ namespace Anaximander.Linq
                 }
             }
         }
+
+        /// <summary>
+        /// Filters a collection to only those values whose keys appear in the specified collection.
+        /// </summary>
+        /// <param name="source">A collection of items to be filtered.</param>
+        /// <param name="keySelector">A func to derive a key on which to filter the items in the source collection.</param>
+        /// <param name="keyValues">The values of key to include.</param>
+        /// <returns>A collection containing the items from the source collection whose keys appeared in the provided set.</returns>
+        public static IEnumerable<T> FilterInclude<T, TKey>(this IEnumerable<T> source, Func<T, TKey> keySelector, IEnumerable<TKey> keyValues)
+        {
+            return source
+                .GroupBy(keySelector)
+                .Where(x => keyValues.Contains(x.Key))
+                .SelectMany(x => x);
+        }
+
+        /// <summary>
+        /// Filters a collection to only those values whose keys do not appear in the specified collection.
+        /// </summary>
+        /// <param name="source">A collection of items to be filtered.</param>
+        /// <param name="keySelector">A func to derive a key on which to filter the items in the source collection.</param>
+        /// <param name="keyValues">The values of key to exclude.</param>
+        /// <returns>A collection containing the items from the source collection whose keys did not appear in the provided set.</returns>
+        public static IEnumerable<T> FilterExclude<T, TKey>(this IEnumerable<T> source, Func<T, TKey> keySelector, IEnumerable<TKey> keyValues)
+        {
+            return source
+                .GroupBy(keySelector)
+                .Where(x => !keyValues.Contains(x.Key))
+                .SelectMany(x => x);
+        }
     }
 }
