@@ -20,6 +20,11 @@ namespace Anaximander.Linq
                 throw new ArgumentNullException(nameof(source), "Source collection is null");
             }
 
+            if (windowSize < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(windowSize), "Window size must be positive");
+            }
+
             if (!source.Any())
             {
                 yield break;
@@ -41,10 +46,7 @@ namespace Anaximander.Linq
                     }
                 }
 
-                if (buffer.Count == windowSize)
-                {
-                    yield return buffer;
-                }
+                yield return buffer;
 
                 while (enumerator.MoveNext())
                 {

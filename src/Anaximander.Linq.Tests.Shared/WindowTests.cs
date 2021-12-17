@@ -86,13 +86,30 @@ namespace Anaximander.Linq.Tests
         }
 
         [Fact]
-        public void WhenCollectionSizeIsSmallerThanWindowSize_ReturnsEmptySet()
+        public void GivenWindowSizeOfZero_ThrowsArgumentOutOfRangeException()
         {
             var collection = new[] { 1, 2, 3 };
 
-            var result = collection.Window(4);
+            Assert.Throws<ArgumentOutOfRangeException>(() => collection.Window(0).ToList());
+        }
 
-            Assert.Empty(result);
+        [Fact]
+        public void GivenWindowSizeBelowZero_ThrowsArgumentOutOfRangeException()
+        {
+            var collection = new[] { 1, 2, 3, 4, 5 };
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => collection.Window(-1).ToList());
+        }
+
+        [Fact]
+        public void WhenCollectionSizeIsSmallerThanWindowSize_ReturnsSingleWindowContainingSource()
+        {
+            var collection = new[] { 1, 2, 3 };
+            var expected = new[] { new[]{ 1, 2, 3 } };
+
+            var result = collection.Window(4).ToList();
+
+            Assert.Equal(expected, result);
         }
 
         [Fact]
