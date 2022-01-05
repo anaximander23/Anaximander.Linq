@@ -37,21 +37,44 @@ namespace Anaximander.Linq
         /// <returns>A set of sets, each representing a different re-ordering of the original set.</returns>
         public static IEnumerable<IEnumerable<T>> Permute<T>(this IEnumerable<T> source)
         {
-            IEnumerable<T> sourceList = source as IList<T> ?? source.ToList();
+            // High-performance algorithm adapted from Eric Ouellet's method
+            // https://stackoverflow.com/questions/11208446/generating-permutations-of-a-set-most-efficiently/36634935
 
-            int sourceCount = sourceList.Count();
+            var items = source.ToArray();
 
-            if (sourceCount == 0)
+            if (!items.Any())
             {
-                return Enumerable.Empty<IEnumerable<T>>();
+                yield break;
             }
 
-            if (sourceCount == 1)
-            {
-                return new[] { sourceList };
-            }
+            int countOfItem = items.Length;
+            var indexes = new int[countOfItem];
 
-            return GenerateCombinations(source, source.Count(), CombinationsGenerationMode.DistinctOrderSensitive);
+            yield return items;
+
+            for (int i = 1; i < countOfItem;)
+            {
+                if (indexes[i] < i)
+                {
+                    if ((i & 1) == 1)
+                    {
+                        Swap(ref items[i], ref items[indexes[i]]);
+                    }
+                    else
+                    {
+                        Swap(ref items[i], ref items[0]);
+                    }
+
+                    yield return items;
+
+                    indexes[i]++;
+                    i = 1;
+                }
+                else
+                {
+                    indexes[i++] = 0;
+                }
+            }
         }
 
         /// <summary>
@@ -69,6 +92,11 @@ namespace Anaximander.Linq
             }
 
             return source.GenerateCombinations(combinationSize, mode);
+        }
+
+        private static void Swap<T>(ref T a, ref T b)
+        {
+            (b, a) = (a, b);
         }
 
         private static IEnumerable<IEnumerable<T>> GenerateCombinations<T>(this IEnumerable<T> source, int combinationSize, CombinationsGenerationMode mode)
@@ -108,13 +136,13 @@ namespace Anaximander.Linq
 
             return indexedSource
                 .SelectMany(x => indexedSource
-                            .OrderBy(y => x.Index != y.Index)
-                            .Skip(distinctModes.Contains(mode) ? 1 : 0)
-                            .OrderBy(y => y.Index)
-                            .Skip(orderSensitiveModes.Contains(mode) ? 0 : x.Index)
-                            .GenerateCombinations(combinationSize - 1, mode)
-                            .Select(y => new[] { x }.Concat(y).Select(z => z.Item))
-                           );
+                    .OrderBy(y => x.Index != y.Index)
+                    .Skip(distinctModes.Contains(mode) ? 1 : 0)
+                    .OrderBy(y => y.Index)
+                    .Skip(orderSensitiveModes.Contains(mode) ? 0 : x.Index)
+                    .GenerateCombinations(combinationSize - 1, mode)
+                    .Select(y => new[] { x }.Concat(y).Select(z => z.Item))
+                );
         }
     }
 }

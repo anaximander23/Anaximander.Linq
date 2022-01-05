@@ -71,6 +71,9 @@ namespace Anaximander.Linq.Tests
 
             int[][] result = collection.Permute()
                 .Select(x => x.ToArray())
+                .OrderBy(x => x[0])
+                .ThenBy(x => x[1])
+                .ThenBy(x => x[2])
                 .ToArray();
 
             Assert.Equal(expected, result);
