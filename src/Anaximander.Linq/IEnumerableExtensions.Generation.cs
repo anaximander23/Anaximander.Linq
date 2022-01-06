@@ -33,8 +33,7 @@ namespace Anaximander.Linq
         }
 
         /// <summary>
-        /// Generates all possible ways that a set of items can be reordered.
-        /// WARNING: for a set of n items, this generates n! sets of n items each. Use with caution.
+        /// Generates all possible ways that a set of items can be reordered. WARNING: for a set of n items, this generates n! sets of n items each. Use with caution.
         /// </summary>
         /// <param name="source">A set of items</param>
         /// <returns>A set of sets, each representing a different re-ordering of the original set.</returns>
@@ -75,8 +74,7 @@ namespace Anaximander.Linq
                 }
                 else
                 {
-                    indexes[i] = 0;
-                    i++;
+                    indexes[i++] = 0;
                 }
             }
         }
