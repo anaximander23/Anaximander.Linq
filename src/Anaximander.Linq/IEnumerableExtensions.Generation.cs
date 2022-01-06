@@ -75,7 +75,8 @@ namespace Anaximander.Linq
                 }
                 else
                 {
-                    indexes[i++] = 0;
+                    indexes[i] = 0;
+                    i++;
                 }
             }
         }
