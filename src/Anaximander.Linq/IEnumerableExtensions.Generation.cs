@@ -6,6 +6,9 @@ namespace Anaximander.Linq
 {
     public static partial class IEnumerableExtensions
     {
+        private static CombinationsGenerationMode[] _distinctModes = new[] { CombinationsGenerationMode.DistinctOrderSensitive, CombinationsGenerationMode.DistinctOrderInsensitive };
+        private static CombinationsGenerationMode[] _orderSensitiveModes = new[] { CombinationsGenerationMode.AllowDuplicatesOrderSensitive, CombinationsGenerationMode.DistinctOrderSensitive };
+
         /// <summary>
         /// Produces all possible combinations of objects by taking one from each collection.
         /// From https://blogs.msdn.microsoft.com/ericlippert/2010/06/28/computing-a-cartesian-product-with-linq/
@@ -113,10 +116,7 @@ namespace Anaximander.Linq
 
             IEnumerable<T> sourceList = source as IList<T> ?? source.ToList();
 
-            CombinationsGenerationMode[] distinctModes = new[] { CombinationsGenerationMode.DistinctOrderSensitive, CombinationsGenerationMode.DistinctOrderInsensitive };
-            CombinationsGenerationMode[] orderSensitiveModes = new[] { CombinationsGenerationMode.AllowDuplicatesOrderSensitive, CombinationsGenerationMode.DistinctOrderSensitive };
-
-            if (distinctModes.Contains(mode) && (combinationSize > sourceList.Count()))
+            if (_distinctModes.Contains(mode) && (combinationSize > sourceList.Count()))
             {
                 return new List<IEnumerable<T>>();
             }
@@ -137,9 +137,9 @@ namespace Anaximander.Linq
             return indexedSource
                 .SelectMany(x => indexedSource
                     .OrderBy(y => x.Index != y.Index)
-                    .Skip(distinctModes.Contains(mode) ? 1 : 0)
+                    .Skip(_distinctModes.Contains(mode) ? 1 : 0)
                     .OrderBy(y => y.Index)
-                    .Skip(orderSensitiveModes.Contains(mode) ? 0 : x.Index)
+                    .Skip(_orderSensitiveModes.Contains(mode) ? 0 : x.Index)
                     .GenerateCombinations(combinationSize - 1, mode)
                     .Select(y => new[] { x }.Concat(y).Select(z => z.Item))
                 );
