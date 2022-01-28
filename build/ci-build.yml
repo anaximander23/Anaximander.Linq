@@ -67,11 +67,8 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    projects: 
-      src/Anaximander.Linq.Tests.DotNetCore2.1/Anaximander.Linq.Tests.DotNetCore2.1.csproj
-      src/Anaximander.Linq.Tests.DotNetCore3.1/Anaximander.Linq.Tests.DotNetCore3.1.csproj
-      src/Anaximander.Linq.Tests.DotNet5.0/Anaximander.Linq.Tests.DotNet5.0.csproj
-    arguments: '--nologo --no-build -c $(build-configuration)'
+    projects: 'src/Anaximander.Linq.Tests.DotNetCore2.1/Anaximander.Linq.Tests.DotNetCore2.1.csproj src/Anaximander.Linq.Tests.DotNetCore3.1/Anaximander.Linq.Tests.DotNetCore3.1.csproj src/Anaximander.Linq.Tests.DotNet5.0/Anaximander.Linq.Tests.DotNet5.0.csproj'
+    arguments: '--nologo --no-build -c $(build-configuration) --collect "Code coverage"'
   displayName: 'Test'
 
 - task: NuGetCommand@2
