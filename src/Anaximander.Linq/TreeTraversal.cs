@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Anaximander.Linq.TreeTraversal
 {
@@ -21,88 +20,14 @@ namespace Anaximander.Linq.TreeTraversal
         /// <param name="childrenSelector">A selector that traverses from one element to its immediate children</param>
         /// <param name="cyclicGraphBehaviour">How to handle data structures that contain cyclic references</param>
         /// <returns>A collection of all the linear paths that can be taken through the structure in the parent-to-child direction</returns>
+        ///
+        [Obsolete("Moved to Generate.Traversals(); will be removed in future release.")]
         public static IEnumerable<IEnumerable<TElement>> GetTraversalPaths<TElement>(
             TElement root,
             Func<TElement, IEnumerable<TElement>> childrenSelector,
             CyclicGraphBehaviour cyclicGraphBehaviour = CyclicGraphBehaviour.Throw)
         {
-            Queue<PathBuilder<TElement>> pathBuilder = new Queue<PathBuilder<TElement>>();
-            pathBuilder.Enqueue(new PathBuilder<TElement>(root));
-
-            while (pathBuilder.Any())
-            {
-                PathBuilder<TElement> node = pathBuilder.Dequeue();
-
-                if (node.IsCyclic)
-                {
-                    switch (cyclicGraphBehaviour)
-                    {
-                        case CyclicGraphBehaviour.Truncate:
-                            yield return node.Path;
-                            continue;
-
-                        default:
-                        case CyclicGraphBehaviour.Throw:
-                            throw new CyclicGraphException();
-                    }
-                }
-
-                IEnumerable<TElement> children = childrenSelector(node.Current);
-
-                var isLeafNode = (children is null) || !children.Any();
-
-                if (isLeafNode)
-                {
-                    yield return node.Path;
-                }
-                else
-                {
-                    foreach (TElement child in children)
-                    {
-                        pathBuilder.Enqueue(node.Append(child));
-                    }
-                }
-            }
-        }
-
-        internal class PathBuilder<TElement>
-        {
-            public PathBuilder(TElement root)
-            {
-                _path = new Queue<TElement>();
-                _path.Enqueue(root);
-            }
-
-            public PathBuilder(IEnumerable<TElement> path, TElement current)
-            {
-                _path = new Queue<TElement>(path);
-                _path.Enqueue(current);
-            }
-
-            public PathBuilder(IEnumerable<TElement> path, TElement current, bool cyclic)
-            {
-                _path = new Queue<TElement>(path);
-                _path.Enqueue(current);
-
-                IsCyclic = cyclic;
-            }
-
-            public readonly bool IsCyclic;
-            private readonly Queue<TElement> _path;
-            public IEnumerable<TElement> Path { get => _path; }
-            public TElement Current => _path.Last();
-
-            public PathBuilder<TElement> Append(TElement next)
-            {
-                bool cyclic = false;
-
-                if (Path.Contains(next))
-                {
-                    cyclic = true;
-                }
-
-                return new PathBuilder<TElement>(Path, next, cyclic);
-            }
+            return Generate.Traversals(root, childrenSelector, cyclicGraphBehaviour);
         }
     }
 }
