@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29123.89
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}"
 EndProject
@@ -11,20 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anaximander.Linq", "Anaxima
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq.Tests.DotNet4.7.2", "Anaximander.Linq.Tests.DotNet4.7.2\Anaximander.Linq.Tests.DotNet4.7.2.csproj", "{0A7ABDE9-BC1D-486A-97CF-9C1418581916}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anaximander.Linq.Tests.DotNet5.0", "Anaximander.Linq.Tests.DotNet5.0\Anaximander.Linq.Tests.DotNet5.0.csproj", "{DE9492F5-FB41-4F78-BDF8-B4710F1094E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anaximander.Linq.Tests.Net6.0", "Anaximander.Linq.Tests.Net6.0\Anaximander.Linq.Tests.Net6.0.csproj", "{24BC2214-A2AA-4580-B3E0-D9A1CFD2F605}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anaximander.Linq.Tests.DotNetCore2.1", "Anaximander.Linq.Tests.DotNetCore2.1\Anaximander.Linq.Tests.DotNetCore2.1.csproj", "{0006AC60-7F2F-430A-B14E-052091EEC709}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anaximander.Linq.Tests.Net7.0", "Anaximander.Linq.Tests.Net7.0\Anaximander.Linq.Tests.Net7.0.csproj", "{496349AF-3ADC-4597-A8C6-A4B068C2608B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anaximander.Linq.Tests.DotNetCore3.1", "Anaximander.Linq.Tests.DotNetCore3.1\Anaximander.Linq.Tests.DotNetCore3.1.csproj", "{A31F04AB-DC13-4317-883E-79A67F4D1831}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anaximander.Linq.Tests.DotNet4.6.2", "Anaximander.Linq.Tests.DotNet4.6.2\Anaximander.Linq.Tests.DotNet4.6.2.csproj", "{A3CCCE74-2D18-4A99-9507-C7BA6E2C02F5}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{0006ac60-7f2f-430a-b14e-052091eec709}*SharedItemsImports = 5
-		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{0a7abde9-bc1d-486a-97cf-9c1418581916}*SharedItemsImports = 4
-		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{1ce07c75-f478-4b67-add4-bf352a2e4796}*SharedItemsImports = 13
-		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{a31f04ab-dc13-4317-883e-79a67f4d1831}*SharedItemsImports = 5
-		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{de9492f5-fb41-4f78-bdf8-b4710f1094e0}*SharedItemsImports = 5
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -38,18 +31,18 @@ Global
 		{0A7ABDE9-BC1D-486A-97CF-9C1418581916}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A7ABDE9-BC1D-486A-97CF-9C1418581916}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A7ABDE9-BC1D-486A-97CF-9C1418581916}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DE9492F5-FB41-4F78-BDF8-B4710F1094E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE9492F5-FB41-4F78-BDF8-B4710F1094E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE9492F5-FB41-4F78-BDF8-B4710F1094E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE9492F5-FB41-4F78-BDF8-B4710F1094E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0006AC60-7F2F-430A-B14E-052091EEC709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0006AC60-7F2F-430A-B14E-052091EEC709}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0006AC60-7F2F-430A-B14E-052091EEC709}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0006AC60-7F2F-430A-B14E-052091EEC709}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A31F04AB-DC13-4317-883E-79A67F4D1831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A31F04AB-DC13-4317-883E-79A67F4D1831}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A31F04AB-DC13-4317-883E-79A67F4D1831}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A31F04AB-DC13-4317-883E-79A67F4D1831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24BC2214-A2AA-4580-B3E0-D9A1CFD2F605}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24BC2214-A2AA-4580-B3E0-D9A1CFD2F605}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24BC2214-A2AA-4580-B3E0-D9A1CFD2F605}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24BC2214-A2AA-4580-B3E0-D9A1CFD2F605}.Release|Any CPU.Build.0 = Release|Any CPU
+		{496349AF-3ADC-4597-A8C6-A4B068C2608B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{496349AF-3ADC-4597-A8C6-A4B068C2608B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{496349AF-3ADC-4597-A8C6-A4B068C2608B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{496349AF-3ADC-4597-A8C6-A4B068C2608B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3CCCE74-2D18-4A99-9507-C7BA6E2C02F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3CCCE74-2D18-4A99-9507-C7BA6E2C02F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3CCCE74-2D18-4A99-9507-C7BA6E2C02F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3CCCE74-2D18-4A99-9507-C7BA6E2C02F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,11 +50,18 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1CE07C75-F478-4B67-ADD4-BF352A2E4796} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
 		{0A7ABDE9-BC1D-486A-97CF-9C1418581916} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
-		{DE9492F5-FB41-4F78-BDF8-B4710F1094E0} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
-		{0006AC60-7F2F-430A-B14E-052091EEC709} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
-		{A31F04AB-DC13-4317-883E-79A67F4D1831} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
+		{24BC2214-A2AA-4580-B3E0-D9A1CFD2F605} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
+		{496349AF-3ADC-4597-A8C6-A4B068C2608B} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
+		{A3CCCE74-2D18-4A99-9507-C7BA6E2C02F5} = {0FA74F5A-80A2-4D7A-B6EE-667B7F6115F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D9CF2A6D-F324-49B7-92D0-C5A61788CB96}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{0a7abde9-bc1d-486a-97cf-9c1418581916}*SharedItemsImports = 4
+		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{1ce07c75-f478-4b67-add4-bf352a2e4796}*SharedItemsImports = 13
+		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{24bc2214-a2aa-4580-b3e0-d9a1cfd2f605}*SharedItemsImports = 5
+		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{496349af-3adc-4597-a8c6-a4b068c2608b}*SharedItemsImports = 5
+		Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems*{a3ccce74-2d18-4a99-9507-c7ba6e2c02f5}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal

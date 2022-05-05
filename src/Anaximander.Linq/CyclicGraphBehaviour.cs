@@ -1,4 +1,4 @@
-﻿namespace Anaximander.Linq.TreeTraversal
+﻿namespace Anaximander.Linq
 {
     /// <summary>
     /// How to handle data structures that contain cyclic references

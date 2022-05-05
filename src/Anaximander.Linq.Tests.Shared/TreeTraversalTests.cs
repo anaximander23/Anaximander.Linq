@@ -1,6 +1,6 @@
-﻿using Anaximander.Linq.TreeTraversal;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Anaximander.Linq.TreeTraversal;
 using Xunit;
 
 namespace Anaximander.Linq.Tests
@@ -12,8 +12,8 @@ namespace Anaximander.Linq.Tests
         {
             NTreeNode tree = GenerateTree();
 
-            IEnumerable<IEnumerable<string>> paths = TreeTraverser
-                .GetTraversalPaths(tree, node => node.Children)
+            IEnumerable<IEnumerable<string>> paths = Generate
+                .Traversals(tree, node => node.Children)
                 .Select(path => path.Select(node => node.Label).ToArray())
                 .ToArray();
 
@@ -37,8 +37,8 @@ namespace Anaximander.Linq.Tests
         {
             NTreeNode tree = GenerateTreeWithCycle();
 
-            IEnumerable<IEnumerable<string>> paths = TreeTraverser
-                .GetTraversalPaths(tree, node => node.Children, CyclicGraphBehaviour.Truncate)
+            IEnumerable<IEnumerable<string>> paths = Generate
+                .Traversals(tree, node => node.Children, CyclicGraphBehaviour.Truncate)
                 .Select(path => path.Select(node => node.Label).ToArray())
                 .ToArray();
 
@@ -62,7 +62,7 @@ namespace Anaximander.Linq.Tests
         {
             NTreeNode tree = GenerateTreeWithCycle();
 
-            Assert.Throws<CyclicGraphException>(() => TreeTraverser.GetTraversalPaths(tree, node => node.Children, CyclicGraphBehaviour.Throw).ToList());
+            Assert.Throws<CyclicGraphException>(() => Generate.Traversals(tree, node => node.Children, CyclicGraphBehaviour.Throw).ToList());
         }
 
         private static NTreeNode GenerateTree()

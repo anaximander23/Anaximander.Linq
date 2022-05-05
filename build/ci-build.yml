@@ -18,36 +18,27 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '2.1.x'
-  displayName: 'Install .NET Core 2.1 SDK'
+    version: '6.0.x'
+  displayName: 'Install .NET 6.0 SDK'
 
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '3.1.x'
-  displayName: 'Install .NET Core 3.1 SDK'
-
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '5.0.x'
-  displayName: 'Install .NET 5.0 SDK'
+    version: '7.0.x'
+  displayName: 'Install .NET 7.0 SDK'
 
 - task: NuGetToolInstaller@1
   inputs:
-    versionSpec: '5.x'
+    versionSpec: '6.x'
     checkLatest: true
-  displayName: 'Use NuGet tool v5.x'
-
+  displayName: 'Use NuGet tool v6.x'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
     projects: |
       src/src/Anaximander.Linq/src/Anaximander.Linq.csproj
-      src/Anaximander.Linq.Tests.DotNetCore2.1/Anaximander.Linq.Tests.DotNetCore2.1.csproj
-      src/Anaximander.Linq.Tests.DotNetCore3.1/Anaximander.Linq.Tests.DotNetCore3.1.csproj
-      src/Anaximander.Linq.Tests.DotNet5.0/Anaximander.Linq.Tests.DotNet5.0.csproj
+      src/Anaximander.Linq.Tests.*/Anaximander.Linq.Tests.*.csproj
     feedsToUse: 'select'
     noCache: true
     verbosityRestore: 'Normal'
@@ -58,16 +49,14 @@ steps:
     command: 'build'
     projects: |
       src/src/Anaximander.Linq/src/Anaximander.Linq.csproj
-      src/Anaximander.Linq.Tests.DotNetCore2.1/Anaximander.Linq.Tests.DotNetCore2.1.csproj
-      src/Anaximander.Linq.Tests.DotNetCore3.1/Anaximander.Linq.Tests.DotNetCore3.1.csproj
-      src/Anaximander.Linq.Tests.DotNet5.0/Anaximander.Linq.Tests.DotNet5.0.csproj
+      src/Anaximander.Linq.Tests.*/Anaximander.Linq.Tests.*.csproj
     arguments: '--nologo --no-restore -c $(build-configuration)'
   displayName: 'Build'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    projects: 'src/Anaximander.Linq.Tests.DotNetCore2.1/Anaximander.Linq.Tests.DotNetCore2.1.csproj src/Anaximander.Linq.Tests.DotNetCore3.1/Anaximander.Linq.Tests.DotNetCore3.1.csproj src/Anaximander.Linq.Tests.DotNet5.0/Anaximander.Linq.Tests.DotNet5.0.csproj'
+    projects: 'src/Anaximander.Linq.Tests.*/Anaximander.Linq.Tests.*.csproj'
     arguments: '--nologo --no-build -c $(build-configuration) --collect "Code coverage"'
   displayName: 'Test'
 
