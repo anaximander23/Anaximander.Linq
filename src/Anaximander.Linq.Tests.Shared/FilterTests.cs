@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace Anaximander.Linq.Tests.Shared
+namespace Anaximander.Linq.Tests
 {
     public class FilterTests
     {

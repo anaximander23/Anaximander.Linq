@@ -49,7 +49,7 @@ steps:
     command: 'build'
     projects: |
       src/src/Anaximander.Linq/src/Anaximander.Linq.csproj
-      src/Anaximander.Linq.Tests.*/Anaximander.Linq.Tests.*.csproj
+      src/Anaximander.Linq.Tests.Net*/Anaximander.Linq.Tests.*.csproj
     arguments: '--nologo --no-restore -c $(build-configuration)'
   displayName: 'Build'
 
@@ -57,7 +57,7 @@ steps:
   inputs:
     command: 'test'
     projects: 'src/Anaximander.Linq.Tests.*/Anaximander.Linq.Tests.*.csproj'
-    arguments: '--nologo --no-build -c $(build-configuration) --collect "Code coverage"'
+    arguments: '--nologo --no-build -c $(build-configuration)'
   displayName: 'Test'
 
 - task: NuGetCommand@2
