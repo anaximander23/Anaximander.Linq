@@ -15,8 +15,6 @@ steps:
     configFilePath: 'GitVersion.yml'
   displayName: 'Generate version number'
 
-
-
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
@@ -51,6 +49,7 @@ steps:
     solution: '**\*.sln'
     configuration: 'Release'
     clean: true
+    restoreNugetPackages: true
     msbuildArchitecture: 'x64'
   displayName: 'Build'
 
