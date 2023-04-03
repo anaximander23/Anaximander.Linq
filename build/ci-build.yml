@@ -15,6 +15,8 @@ steps:
     configFilePath: 'GitVersion.yml'
   displayName: 'Generate version number'
 
+
+
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
@@ -44,13 +46,12 @@ steps:
     verbosityRestore: 'Normal'
   displayName: 'Restore NuGet packages'
 
-- task: DotNetCoreCLI@2
+- task: VSBuild@1
   inputs:
-    command: 'build'
-    projects: |
-      src/src/Anaximander.Linq/src/Anaximander.Linq.csproj
-      src/Anaximander.Linq.Tests.Net*/Anaximander.Linq.Tests.*.csproj
-    arguments: '--nologo --no-restore -c $(build-configuration)'
+    solution: '**\*.sln'
+    configuration: 'Release'
+    clean: true
+    msbuildArchitecture: 'x64'
   displayName: 'Build'
 
 - task: DotNetCoreCLI@2
