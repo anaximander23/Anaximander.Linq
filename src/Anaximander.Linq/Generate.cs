@@ -79,6 +79,37 @@ namespace Anaximander.Linq
             }
         }
 
+        /// <summary>
+        /// Generates the Fibonacci sequence. Note that after 93 iterations, the sequence will overflow a 64-bit unsigned integer.
+        /// </summary>
+        public static IEnumerable<ulong> Fibonacci()
+        {
+            return Sequence(
+                    (current: 0ul, next: 1ul),
+                    x =>
+                    {
+                        checked
+                        {
+                            return (x.next, x.current + x.next);
+                        }
+                    },
+                    x => true)
+                .Select(x => x.current);
+        }
+
+        /// <summary>
+        /// Returns the nth Fibonacci number (zero-indexed). Note that indexes above 93 will overflow a 64-bit unsigned integer.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public static ulong Fibonacci(int index)
+        {
+            return Fibonacci()
+                .Skip(index)
+                .Take(1)
+                .Single();
+        }
+
         internal class PathBuilder<TElement>
         {
             public PathBuilder(TElement root)
