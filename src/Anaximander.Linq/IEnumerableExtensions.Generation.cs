@@ -14,7 +14,7 @@ namespace Anaximander.Linq
         /// From https://blogs.msdn.microsoft.com/ericlippert/2010/06/28/computing-a-cartesian-product-with-linq/
         /// </summary>
         /// <param name="firstSequence">A collection of items to combine</param>
-        /// <param name="otherSequences">A second collection to combine the first set with</param>
+        /// <param name="secondSequence">A second collection to combine the first set with</param>
         /// <param name="otherSequences">A set of further collections to combine with</param>
         /// <returns>A collection of collections, where each inner collection is one possible permutation.</returns>
         public static IEnumerable<IEnumerable<T>> CartesianProduct<T>(this IEnumerable<T> firstSequence, IEnumerable<T> secondSequence, params IEnumerable<T>[] otherSequences)

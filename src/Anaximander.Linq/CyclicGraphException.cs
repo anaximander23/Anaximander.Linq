@@ -3,6 +3,9 @@ using System.Runtime.Serialization;
 
 namespace Anaximander.Linq.TreeTraversal
 {
+    /// <summary>
+    /// Excception thrown when a cyclic graph is encountered during traversal generation and the <see cref="CyclicGraphBehaviour"/> is set to <see cref="CyclicGraphBehaviour.Throw"/>.
+    /// </summary>
     [Serializable]
     public class CyclicGraphException : Exception
     {

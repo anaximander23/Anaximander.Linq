@@ -1,27 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
-using Anaximander.Linq.TreeTraversal;
 using System.Linq;
+using Anaximander.Linq.TreeTraversal;
 
 namespace Anaximander.Linq
 {
+    /// <summary>
+    /// Provides methods for generating collections or sequences of data.
+    /// </summary>
 	public static class Generate
-	{
+    {
+        /// <summary>
+        /// Generates a sequence of values by applying a function to the previous value in the sequence.
+        /// </summary>
+        /// <param name="first">The starting value for the sequence</param>
+        /// <param name="getNext">A function that transforms a value in the sequence into the following value</param>
+        /// <param name="shouldContinue">A predicate that takes the current value in the sequence and returns true as long as the sequence should continue, and false when it should stop</param>
+        /// <returns></returns>
 		public static IEnumerable<T> Sequence<T>(T first, Func<T, T> getNext, Func<T, bool> shouldContinue)
-		{
-			if (shouldContinue(first))
-			{
-				yield return first;
-			}
+        {
+            if (shouldContinue(first))
+            {
+                yield return first;
+            }
 
-			var current = first;
+            var current = first;
 
-			while (shouldContinue(current))
-			{
-				current = getNext(current);
-				yield return current;
-			}
-		}
+            while (shouldContinue(current))
+            {
+                current = getNext(current);
+                yield return current;
+            }
+        }
+
+        /// <summary>
+        /// Generates a sequence of values by applying a function to the previous value in the sequence.
+        /// </summary>
+        /// <param name="first">The starting value for the sequence</param>
+        /// <param name="getNext">A function that transforms a value in the sequence into the following value</param>
+        /// <returns></returns>
+        public static IEnumerable<T> Sequence<T>(T first, Func<T, T> getNext)
+            => Sequence(first, getNext, x => true);
 
         // Adapted from code by MSDN user OlofPetterson
         // https://social.msdn.microsoft.com/Forums/vstudio/en-US/63282240-0fbb-40c1-a716-1371e77a991d/getting-all-paths-in-tree-traversal#5819bb97-34cb-49ef-b202-031495157590-isAnswer
