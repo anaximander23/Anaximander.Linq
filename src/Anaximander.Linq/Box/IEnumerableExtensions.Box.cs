@@ -36,5 +36,21 @@ namespace Anaximander.Linq
 
             return new BoxedEnumerable<T>(source, sameBoxWhile);
         }
+
+        /// <summary>
+        /// Groups items in a collection by adding to a box while the box meets some condition, and starting a new box when it does not.
+        /// </summary>
+        /// <param name="source">A collection of objects, in the desired order.</param>
+        /// <param name="shouldContinue">A predicate that determines whether the current box should continue, given the current box.</param>
+        /// <returns>A collection of collections, where each inner collection is a box that meets the specified condition.</returns>
+        public static IBoxedEnumerable<T> AggregateBoxWhile<T>(this IEnumerable<T> source, Func<IEnumerable<T>, bool> shouldContinue)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source), "Source collection is null");
+            }
+
+            return new AggregateBoxedEnumerable<T>(source, shouldContinue);
+        }
     }
 }

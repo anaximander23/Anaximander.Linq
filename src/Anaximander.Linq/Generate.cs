@@ -111,8 +111,7 @@ namespace Anaximander.Linq
                         {
                             return (x.next, x.current + x.next);
                         }
-                    },
-                    x => true)
+                    })
                 .Select(x => x.current);
         }
 
