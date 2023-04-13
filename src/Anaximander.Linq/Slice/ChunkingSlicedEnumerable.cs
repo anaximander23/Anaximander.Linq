@@ -7,7 +7,7 @@ namespace Anaximander.Linq
 {
     internal class ChunkingSlicedEnumerable<T> : ISlicedEnumerable<T>
     {
-        public ChunkingSlicedEnumerable(IEnumerable<T> source, int sliceSize, int maxNumberOfSlices = 0)
+        public ChunkingSlicedEnumerable(IEnumerable<T> source, int sliceSize)
         {
             if (sliceSize < 1)
             {
@@ -44,7 +44,7 @@ namespace Anaximander.Linq
                         yield break;
 
                     case 1:
-                        if (chunkPair.First().Count() == _sliceSize)
+                        if (chunkPair.First().Length == _sliceSize)
                         {
                             yield return chunkPair.First();
                         }
@@ -77,7 +77,9 @@ namespace Anaximander.Linq
         {
             if (_remainder == null)
             {
+#pragma warning disable CA1806 // Do not ignore method results
                 GetSlices().ToList();
+#pragma warning restore CA1806 // Do not ignore method results
             }
 
             foreach (T item in _remainder)
