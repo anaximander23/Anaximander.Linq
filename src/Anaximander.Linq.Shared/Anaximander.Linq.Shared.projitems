@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>3b7ba504-3d44-478b-8284-caa1d967daf3</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Anaximander.Linq.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Box\AggregateBoxedEnumerable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Box\BoxedEnumerable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Box\IBoxedEnumerable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Box\IEnumerableExtensions.Box.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CombinationsGenerationMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CyclicGraphBehaviour.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CyclicGraphException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Generate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.Generation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.Inspection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IEnumerableExtensions.Subdivision.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shuffle\IEnumerableExtensions.Shuffle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shuffle\IShufflingEnumerable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shuffle\ShufflingEnumerable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shuffle\ShufflingEnumerable_T.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Slice\ISlicedEnumerable.cs" />
+  </ItemGroup>
+</Project>
