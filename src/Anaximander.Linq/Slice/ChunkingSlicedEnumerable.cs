@@ -16,8 +16,6 @@ namespace Anaximander.Linq
 
             _sliceSize = sliceSize;
             _chunked = source.Chunk(sliceSize);
-
-            _remainder = Enumerable.Empty<T>();
         }
 
         private readonly int _sliceSize;
