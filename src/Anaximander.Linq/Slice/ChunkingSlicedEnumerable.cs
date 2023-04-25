@@ -54,7 +54,7 @@ namespace Anaximander.Linq
                         break;
 
                     default:
-                        last = chunkPair.Last();                        
+                        last = chunkPair.Last();
                         yield return chunkPair.First();
 
                         break;
@@ -65,10 +65,8 @@ namespace Anaximander.Linq
             {
                 yield return last;
             }
-            else
-            {
-                _remainder = last;
-            }
+
+            _remainder = last;
         }
 
         private IEnumerable<T> GetRemainder()
