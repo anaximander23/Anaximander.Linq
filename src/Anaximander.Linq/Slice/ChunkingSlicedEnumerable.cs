@@ -7,7 +7,7 @@ namespace Anaximander.Linq
 {
     internal class ChunkingSlicedEnumerable<T> : ISlicedEnumerable<T>
     {
-        public ChunkingSlicedEnumerable(IEnumerable<T> source, int sliceSize)
+        public ChunkingSlicedEnumerable(IEnumerable<T> source, int sliceSize, int? sliceCount = null)
         {
             if (sliceSize < 1)
             {
@@ -15,10 +15,13 @@ namespace Anaximander.Linq
             }
 
             _sliceSize = sliceSize;
+            _sliceCount = sliceCount;
+
             _chunked = source.Chunk(sliceSize);
         }
 
         private readonly int _sliceSize;
+        private readonly int? _sliceCount;
 
         private readonly IEnumerable<T[]> _chunked;
         private IEnumerable<T> _remainder;
@@ -32,41 +35,19 @@ namespace Anaximander.Linq
 
         private IEnumerable<IEnumerable<T>> GetSlices()
         {
-            IEnumerable<T> last = Enumerable.Empty<T>();
+            _remainder = Enumerable.Empty<T>();
 
-            foreach (var chunkPair in _chunked.Window(2))
+            foreach ((IEnumerable<T> chunk, int index) in _chunked.Select((x, i) => (chunk: x, index: i)))
             {
-                switch (chunkPair.Count())
+                if ((_sliceCount is null || index < _sliceCount) && chunk.Count() == _sliceSize)
                 {
-                    case 0:
-                        yield break;
-
-                    case 1:
-                        if (chunkPair.First().Length == _sliceSize)
-                        {
-                            yield return chunkPair.First();
-                        }
-                        else
-                        {
-                            last = chunkPair.First();
-                            yield break;
-                        }
-                        break;
-
-                    default:
-                        last = chunkPair.Last();
-                        yield return chunkPair.First();
-
-                        break;
+                    yield return chunk;
+                }
+                else
+                {
+                    _remainder = _remainder.Concat(chunk);
                 }
             }
-
-            if (last is not null && last.Count() == _sliceSize)
-            {
-                yield return last;
-            }
-
-            _remainder = last;
         }
 
         private IEnumerable<T> GetRemainder()

@@ -28,7 +28,7 @@ namespace Anaximander.Linq
                 throw new InvalidOperationException("Cannot slice a collection into fewer parts than it has elements.");
             }
 
-            return new ChunkingSlicedEnumerable<T>(source, enumeratedSource.Count() / numberOfSlices);
+            return new ChunkingSlicedEnumerable<T>(source, enumeratedSource.Count() / numberOfSlices, numberOfSlices);
         }
 
         /// <summary>
