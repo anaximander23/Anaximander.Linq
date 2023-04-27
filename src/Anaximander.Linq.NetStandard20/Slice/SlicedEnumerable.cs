@@ -9,6 +9,11 @@ namespace Anaximander.Linq
     {
         public SlicedEnumerable(IEnumerable<T> source, int sliceSize, int maxNumberOfSlices = 0)
         {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
             if (sliceSize < 1)
             {
                 throw new ArgumentException("Slice size must be equal to or greater than 1", nameof(sliceSize));
@@ -18,67 +23,52 @@ namespace Anaximander.Linq
             _maxNumberOfSlices = maxNumberOfSlices;
 
             _source = source;
-            _windowEnumerator = source.Window(_sliceSize).GetEnumerator();
-
             _processedSlices = new List<IEnumerable<T>>();
         }
 
+        private readonly int _sliceSize;
+        private readonly int _maxNumberOfSlices;
+        private readonly IEnumerable<T> _source;
+        private readonly List<IEnumerable<T>> _processedSlices;
+        private IEnumerable<T> _remainder;
         public IEnumerable<IEnumerable<T>> Slices => GetSlices();
         public IEnumerable<T> Remainder => GetRemainder();
 
-        private readonly int _sliceSize;
-        private readonly int _maxNumberOfSlices;
+        public IEnumerator<IEnumerable<T>> GetEnumerator() => All().GetEnumerator();
 
-        private readonly IEnumerable<T> _source;
-        private readonly IEnumerator<IEnumerable<T>> _windowEnumerator;
-        private readonly List<IEnumerable<T>> _processedSlices;
-        private IEnumerable<T> _remainder;
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         private IEnumerable<IEnumerable<T>> GetSlices()
         {
-            int sliceIndex = 0;
-            int moved = 0;
+            var buffer = new List<T>(_sliceSize);
+            var remainder = new List<T>();
 
-            while (sliceIndex < _processedSlices.Count)
+            int slicesProcessed = 0;
+
+            using (var enumerator = _source.GetEnumerator())
             {
-                yield return _processedSlices[sliceIndex];
-                sliceIndex = sliceIndex + 1;
-            }
-
-            bool endReached;
-            do
-            {
-                endReached = !_windowEnumerator.MoveNext();
-
-                if (!endReached)
+                while (enumerator.MoveNext())
                 {
-                    moved = moved + 1;
-
-                    if ((moved == _sliceSize) || (sliceIndex == 0))
+                    if ((_maxNumberOfSlices == 0) || (slicesProcessed < _maxNumberOfSlices))
                     {
-                        moved = 0;
-                        sliceIndex = sliceIndex + 1;
+                        buffer.Add(enumerator.Current);
 
-                        List<T> current = _windowEnumerator.Current.ToList();
-
-                        if (current.Count == _sliceSize)
+                        if (buffer.Count == _sliceSize)
                         {
-                            _processedSlices.Add(current);
-                            yield return current;
-                        }
+                            yield return buffer;
+                            slicesProcessed++;
 
-                        if ((_maxNumberOfSlices != 0) && (sliceIndex == _maxNumberOfSlices))
-                        {
-                            _remainder = _source.Skip(sliceIndex * _sliceSize).ToList();
-                            break;
+                            buffer = new List<T>(_sliceSize);
                         }
                     }
+                    else
+                    {
+                        remainder.Add(enumerator.Current);
+                    }
                 }
-            } while (!endReached);
 
-            if (_remainder == null)
-            {
-                _remainder = _windowEnumerator?.Current?.Skip(_sliceSize - moved)?.ToList() ?? new List<T>();
+                remainder.InsertRange(0, buffer);
+                _remainder = remainder;
             }
         }
 
@@ -106,9 +96,5 @@ namespace Anaximander.Linq
                 yield return Remainder;
             }
         }
-
-        public IEnumerator<IEnumerable<T>> GetEnumerator() => All().GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
