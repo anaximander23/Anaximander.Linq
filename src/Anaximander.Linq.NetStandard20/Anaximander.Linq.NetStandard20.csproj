@@ -6,6 +6,8 @@
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<RootNamespace>Anaximander.Linq</RootNamespace>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>bin\Debug\netstandard2.0\Anaximander.Linq.NetStandard20.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
