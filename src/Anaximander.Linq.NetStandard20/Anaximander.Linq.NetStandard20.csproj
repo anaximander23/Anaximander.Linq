@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0</TargetFrameworks>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<RootNamespace>Anaximander.Linq</RootNamespace>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>bin\doc\Anaximander.Linq.NetStandard20.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+	</ItemGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DocumentationFile>bin\Release\Anaximander.Linq.xml</DocumentationFile>
+		<OutputPath>bin\Release\</OutputPath>
+	</PropertyGroup>
+
+	<Import Project="..\Anaximander.Linq.Shared\Anaximander.Linq.Shared.projitems" Label="Shared" />
+</Project>

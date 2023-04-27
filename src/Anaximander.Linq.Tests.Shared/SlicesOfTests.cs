@@ -78,7 +78,13 @@ namespace Anaximander.Linq.Tests
         [Fact]
         public void GivenCollectionSizeGreaterThanMultipleSliceSizes_ReturnsRemainderOfCorrectSize()
         {
-            var collection = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5 };
+            var collection = new[]
+            { 
+                1, 2, 3, 4,
+                5, 6, 7, 8, 
+                9, 0, 1, 2,
+                3, 4, 5 
+            };
             var expectedRemainder = new[] { 3, 4, 5 };
 
             var result = collection.SlicesOf(4);
@@ -153,7 +159,7 @@ namespace Anaximander.Linq.Tests
         [Fact]
         public void GivenEnumeratedSlices_SlicesAreTheSameOnSubsequentEvaluations()
         {
-            var collection = new[] { 1, 2, 3, 4, 5, 67, 8, 9, 0 };
+            var collection = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
 
             var sliced = collection.SlicesOf(3);
 

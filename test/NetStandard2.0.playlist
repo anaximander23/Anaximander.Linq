@@ -1,0 +1,11 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Property Name="Project" Value="Anaximander.Linq.Tests.DotNet4.7.2" />
+        <Property Name="Project" Value="Anaximander.Linq.Tests.DotNet4.6.2" />
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>

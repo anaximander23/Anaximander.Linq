@@ -132,5 +132,35 @@ namespace Anaximander.Linq.Tests
             Assert.Equal(expectedSlices, resultSlices);
             Assert.Empty(resultRemainder);
         }
+
+        [Fact]
+        public void GivenCollectionToSlice_SlicesCountIsCalculatedCorrectly()
+        {
+            var collection = Enumerable.Range(0, 100);
+
+            var result = collection.Slices(40);
+
+            var slicesCount = result.Slices.Count();
+
+            var slicesList = result.ToList();
+
+            Assert.Equal(40, slicesCount);
+        }
+
+        [Fact]
+        public void GivenCollectionToSlice_SlicesCountIsConsistent()
+        {
+            var collection = Enumerable.Range(0, 100);
+
+            var result = collection.Slices(40);
+
+            var slicesCount1 = result.Slices.Count();
+
+            var slicesList = result.ToList();
+
+            var slicesCount2 = result.Slices.Count();
+
+            Assert.Equal(slicesCount1, slicesCount2);
+        }
     }
 }

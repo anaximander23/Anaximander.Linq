@@ -26,6 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <NoWarn>CS0618</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -73,14 +74,14 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Anaximander.Linq\Anaximander.Linq.csproj">
-      <Project>{65f46750-6a2a-4749-8bba-d0b7f1262919}</Project>
-      <Name>Anaximander.Linq</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.1.1.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
     <Analyzer Include="..\packages\xunit.analyzers.1.1.0\analyzers\dotnet\cs\xunit.analyzers.fixes.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Anaximander.Linq.NetStandard20\Anaximander.Linq.NetStandard20.csproj">
+      <Project>{fdf37fea-77b9-4add-9a99-d7467f3ad537}</Project>
+      <Name>Anaximander.Linq.NetStandard20</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\Anaximander.Linq.Tests.Shared\Anaximander.Linq.Tests.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

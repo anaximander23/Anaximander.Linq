@@ -6,8 +6,8 @@ namespace Anaximander.Linq
 {
     public static partial class IEnumerableExtensions
     {
-        private static CombinationsGenerationMode[] _distinctModes = new[] { CombinationsGenerationMode.DistinctOrderSensitive, CombinationsGenerationMode.DistinctOrderInsensitive };
-        private static CombinationsGenerationMode[] _orderSensitiveModes = new[] { CombinationsGenerationMode.AllowDuplicatesOrderSensitive, CombinationsGenerationMode.DistinctOrderSensitive };
+        private static readonly CombinationsGenerationMode[] _distinctModes = new[] { CombinationsGenerationMode.DistinctOrderSensitive, CombinationsGenerationMode.DistinctOrderInsensitive };
+        private static readonly CombinationsGenerationMode[] _orderSensitiveModes = new[] { CombinationsGenerationMode.AllowDuplicatesOrderSensitive, CombinationsGenerationMode.DistinctOrderSensitive };
 
         /// <summary>
         /// Produces all possible combinations of objects by taking one from each collection.

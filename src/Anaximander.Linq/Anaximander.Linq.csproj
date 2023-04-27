@@ -1,10 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>bin\doc\Anaximander.Linq.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,4 +17,6 @@
     <DocumentationFile>bin\Release\Anaximander.Linq.xml</DocumentationFile>
     <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
+
+  <Import Project="..\Anaximander.Linq.Shared\Anaximander.Linq.Shared.projitems" Label="Shared" />
 </Project>
