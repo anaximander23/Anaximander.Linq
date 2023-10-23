@@ -11,6 +11,7 @@
   </metadata>
   <files>
   	<file src="..\README.md" target="docs\" />
+	<file src="..\LICENSE.md" target="docs\" />
   
     <file src="..\src\Anaximander.Linq.NetStandard20\bin\Release\netstandard2.0\Anaximander.Linq.NetStandard20.dll" target="lib\netstandard2.0\Anaximander.Linq.NetStandard20.dll" />
     <file src="..\src\Anaximander.Linq.NetStandard20\bin\Release\netstandard2.0\Anaximander.Linq.xml" target="lib\netstandard2.0\Anaximander.Linq.NetStandard20.xml" />
